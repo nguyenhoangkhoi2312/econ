@@ -2,6 +2,12 @@
 
 ECON is a high-performance Digital Twin platform designed to bridge Building Information Modeling (BIM) data with real-time SCADA/HVAC telemetry. It features a lightweight React/Three.js frontend and a heavy-duty Go backend that runs physical thermodynamic simulations and streams state via WebSockets.
 
+> **🆕 Latest Update (June 20, 2026, 06:23 AM ICT - Occupancy-Driven MQTT Loop)**
+> - The Go engine is now wired directly to the Mosquitto MQTT broker, acting as the single brain for both physics simulation and IoT actuation.
+> - Closed the occupancy → physics → actuation loop: The Go backend subscribes to real telemetry (`econ/telemetry/+`), dynamically updates internal thermal loads, and dictates physical actuations (e.g., publishing `LIGHTS_OFF` to `econ/commands/` when zones are unoccupied).
+> - Deprecated the redundant Python bridge (`raspberry_backend`) in favor of this unified Go architecture.
+> - Added an `eclipse-mosquitto` broker directly to `docker-compose.yml`.
+
 ## 🚀 Development Process & Architecture
 
 During **Sprint 1 (Core Architecture & Simulation)**, we built a robust and highly scalable foundation:
