@@ -8,57 +8,15 @@ import TelemetryPanel from './TelemetryPanel';
 import GlobalMetricsPanel from './GlobalMetricsPanel';
 import TelemetryLogs from './TelemetryLogs';
 import MaintenanceDrawer from './MaintenanceDrawer';
+import AiInsightsPanel from './AiInsightsPanel';
 import * as flatbuffers from 'flatbuffers';
 import { SimState } from './telemetry';
+import { useDigitalTwin } from './useDigitalTwin';
 import AirflowVectorField from './AirflowVectorField';
+import CanvasErrorBoundary from './CanvasErrorBoundary';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Canvas } from '@react-three/fiber';
 
-const INTEGRATION_BY_TYPE = {
-  'server-room': 1.05,
-  'corridor': 0.95,
-  'lobby': 0.90,
-  'mechanical': 0.85,
-  'retail': 0.75,
-  'conference': 0.70,
-  'office': 0.55,
-};
-
-
-
-const getInitialSimData = () => {
-  const data = { scenario: 'peak', ahuPressure: 500, buildingLoadMw: 0, systemHealth: 100, totalOccupants: 0, vavs: {}, zones: {}, logs: [] };
-  buildingData.floors.forEach(floor => {
-    floor.zones.forEach(z => {
-      // Use pre-calculated centroid from building-data.json if available
-      let cx = 20, cy = 20;
-      if (z.centroid) {
-        cx = z.centroid.x;
-        cy = z.centroid.y;
-      }
-      
-      if (z.hvacMapping) {
-        data.vavs[z.hvacMapping.vavId] = { id: z.hvacMapping.vavId, targetZone: z.zoneId, flow: 0 };
-      }
-      data.zones[z.zoneId] = {
-        id: z.zoneId,
-        level: floor.level,
-        label: z.name,
-        type: z.zoneType,
-        bim_asset_id: z.bim_asset_id,
-        temp: z.thermalProperties?.setpoint || 24.0,
-        setpoint: z.thermalProperties?.setpoint || 24.0,
-        deadband: z.thermalProperties?.deadband || 2.0,
-        alert: false,
-        occupancy: z.thermalProperties?.occupancy || (z.zoneType === 'server-room' ? 0 : Math.floor(Math.random() * 40) + 10),
-        integration_score: INTEGRATION_BY_TYPE[z.zoneType] || 0.6,
-        baseHeatGain: z.thermalProperties?.internalHeatLoad || 0,
-        centroid: { x: cx, y: cy }
-      };
-    });
-  });
-  return data;
-};
 
 // --- P&ID ENGINEERING CUSTOM NODES ---
 // Custom smoothstep implementation for heatmap color
@@ -273,33 +231,26 @@ const buildTopologyFromSim = (simState, activeFloor, ontology) => {
 
 
 function App() {
-  const [activeScenario, setActiveScenario] = useState('peak');
-  const [autoPilot, setAutoPilot] = useState(true);
   const [activeFloor, setActiveFloor] = useState(6);
   const [selectedZone, setSelectedZone] = useState(null);
-  const [faultTarget, setFaultTargetState] = useState('zone-server-lvl8');
-  const faultTargetRef = useRef('zone-server-lvl8');
-  
-  const setFaultTarget = (v) => {
-    setFaultTargetState(v);
-    faultTargetRef.current = v;
-  };
   const [showAiModal, setShowAiModal] = useState(false);
   const [panelSize, setPanelSize] = useState({ w: 600, h: 400 });
   const [activeLeftTab, setActiveLeftTab] = useState('ai');
-  const [loadHistory, setLoadHistory] = useState([]);
   const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(true);
   const [leftPanelSize, setLeftPanelSize] = useState({ w: 360 });
   const [showWindSim, setShowWindSim] = useState(true);
   const [windPanelSize, setWindPanelSize] = useState({ w: 400, h: 300 });
-  const [showAnalytics, setShowAnalytics] = useState(false);
   const [maintenanceTarget, setMaintenanceTarget] = useState(null);
   const [ontology, setOntology] = useState(null);
-  const [viewMode, setViewMode] = useState('hybrid'); // 'physical' | 'hybrid' | 'logical'
-  const ontologyRef = useRef(null); // fresh copy for the WebSocket handler's stale closure
-  const lastHistUpdateRef = useRef(0);
+  const [viewMode, setViewMode] = useState('hybrid');
+  const ontologyRef = useRef(null);
 
-  // Fetch Semantic Ontology on load
+  const [nodes, setNodes] = useState([]);
+  const [edges, setEdges] = useState([]);
+  const [liveLogs, setLiveLogs] = useState([]);
+  const logEndRef = useRef(null);
+  const activeFloorRef = useRef(activeFloor);
+
   useEffect(() => {
     fetch('http://localhost:8080/api/ontology')
       .then(res => res.json())
@@ -307,61 +258,51 @@ function App() {
       .catch(err => console.error("Failed to load Brick ontology:", err));
   }, []);
 
-  // Initial topology
-  const initialData = useMemo(() => getInitialSimData(), []);
-  const initialTopo = useMemo(() => buildTopologyFromSim(initialData, 6, ontology), [initialData, ontology]);
-  const [nodes, setNodes] = useState(initialTopo.nodes);
-  const [edges, setEdges] = useState(initialTopo.edges);
-  const [liveLogs, setLiveLogs] = useState([]);
-  const [simData, setSimData] = useState(initialData);
-  const wsRef = useRef(null);
-  const logEndRef = useRef(null);
-  const activeFloorRef = useRef(activeFloor);
-  const activeScenarioRef = useRef(activeScenario);
-  const simDataRef = useRef(initialData);
+  const onSimUpdate = useCallback((newSimData, currentScenario) => {
+    setNodes(nds => nds.map(n => {
+      if (n.type === 'zone' && newSimData.zones[n.id]) {
+          return { ...n, data: { ...n.data, temp: newSimData.zones[n.id].temp.toFixed(1), alert: newSimData.zones[n.id].alert } };
+      }
+      if (n.type === 'vav' && newSimData.vavs[n.id]) {
+          return { ...n, data: { ...n.data, flow: newSimData.vavs[n.id].flow.toFixed(1) + ' m³/m' } };
+      }
+      if (n.type === 'ahu') {
+          return { ...n, data: { ...n.data, pressure: newSimData.ahuPressure } };
+      }
+      return n;
+    }));
 
-  const globalMetrics = useMemo(() => {
-    if (!simData || !simData.zones) return { occupants: 0, avgTemp: 0 };
-    let occupants = 0;
-    let tempSum = 0;
-    const zones = Object.values(simData.zones);
-    zones.forEach(z => {
-      occupants += (z.occupancy || 0);
-      tempSum += parseFloat(z.temp) || 24.0;
-    });
-    return {
-      occupants,
-      avgTemp: zones.length ? (tempSum / zones.length).toFixed(1) : 0
-    };
-  }, [simData]);
-
-  const selectedNode = nodes.find(n => n.selected);
+    setEdges(eds => eds.map(e => {
+      if (!e.data?.isFlow) return e;
+      const isFault = currentScenario === 'fault';
+      const isRem = currentScenario === 'remediating';
+      const gradientId = isFault ? 'flow-fault' : (isRem ? 'flow-rem' : 'flow-nominal');
+      const markerColor = isFault ? 'var(--accent-red)' : (isRem ? 'var(--accent-yellow)' : 'var(--accent-green)');
+      
+      return {
+         ...e,
+         className: !isFault ? 'edge-flow-vector-fast' : 'edge-flow-vector',
+         style: { ...e.style, stroke: `url(#${gradientId})`, strokeDasharray: isFault ? '4 4' : '5 5' },
+         markerEnd: { type: MarkerType.ArrowClosed, color: markerColor }
+      };
+    }));
+  }, []);
 
   const onNodesChange = useCallback((changes) => setNodes((nds) => applyNodeChanges(changes, nds)), []);
   const onEdgesChange = useCallback((changes) => setEdges((eds) => applyEdgeChanges(changes, eds)), []);
 
-  const loadScenario = (key) => {
-    const baseScenario = key.startsWith('fault:') ? 'fault' : key;
-    setActiveScenario(baseScenario);
-    activeScenarioRef.current = baseScenario;
-    // Jump the 3D view to the faulting zone's floor so the runaway is actually visible.
-    if (key.startsWith('fault:')) {
-      const zid = key.slice(6);
-      const floor = buildingData.floors.find(f => f.zones.some(z => z.zoneId === zid));
-      if (floor) {
-        setActiveFloor(floor.level);
-        setSelectedZone(zid);
-      }
-    }
-    if (baseScenario === 'fault' && autoPilot) {
-      setShowAiModal(true);
-    } else {
-      setShowAiModal(false);
-    }
-    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(key);
-    }
-  };
+  const {
+    simData,
+    initialData,
+    activeScenario,
+    autoPilot,
+    setAutoPilot,
+    faultTarget,
+    setFaultTarget,
+    loadHistory,
+    globalMetrics,
+    loadScenario
+  } = useDigitalTwin(onSimUpdate);
 
   const executeRemediation = () => {
     setShowAiModal(false);
@@ -374,125 +315,14 @@ function App() {
   // When activeFloor changes or ontology loads, completely rebuild the topology
   useEffect(() => {
     activeFloorRef.current = activeFloor;
-    const topo = buildTopologyFromSim(simDataRef.current, activeFloor, ontology);
+    // NOTE: In the original App.jsx, buildTopologyFromSim needs simData.
+    // We pass simData to it to build initial nodes
+    // Wait, buildTopologyFromSim is defined below this component? Yes.
+    // We can just use simData directly.
+    const topo = buildTopologyFromSim(simData, activeFloor, ontology);
     setNodes(topo.nodes);
     setEdges(topo.edges);
-  }, [activeFloor, ontology]);
-
-  // Physics Engine Loop (WebSocket FlatBuffers Stream)
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8080/ws');
-    ws.binaryType = 'arraybuffer';
-    wsRef.current = ws;
-
-    ws.onmessage = (event) => {
-      const buf = new flatbuffers.ByteBuffer(new Uint8Array(event.data));
-      const state = SimState.getRootAsSimState(buf);
-      
-      const prevData = simDataRef.current;
-      const newSimData = { ...prevData, logs: liveLogs };
-      newSimData.zones = { ...prevData.zones };
-      newSimData.vavs = { ...prevData.vavs };
-
-      const zonesLen = state.zonesLength();
-      for(let i = 0; i < zonesLen; i++) {
-        const z = state.zones(i);
-        const id = z.id();
-        if (newSimData.zones[id]) {
-            const temp = z.temp();
-            const type = newSimData.zones[id].type || newSimData.zones[id].zoneType;
-            let alert = false;
-            const isFaultMode = activeScenarioRef.current === 'fault';
-            const isRemediatingMode = activeScenarioRef.current === 'remediating';
-            
-            if (isFaultMode && id === faultTargetRef.current) {
-                alert = true;
-            } else if (isRemediatingMode && id === faultTargetRef.current) {
-                alert = 'REMEDIATING';
-            }
-            newSimData.zones[id] = { ...newSimData.zones[id], temp, load: z.load(), alert };
-        }
-      }
-
-      const vavsLen = state.vavsLength();
-      for(let i = 0; i < vavsLen; i++) {
-        const v = state.vavs(i);
-        const id = v.id();
-        if (newSimData.vavs[id]) {
-            newSimData.vavs[id] = { ...newSimData.vavs[id], flow: v.airflow() };
-        }
-      }
-
-      const g = state.global();
-      if (g) {
-        newSimData.buildingLoadMw = g.buildingLoadMw();
-        
-        // Force system health drop during faults for visual demonstration
-        if (activeScenarioRef.current === 'fault') {
-           newSimData.systemHealth = 68.4 + (Math.random() * 2);
-        } else {
-           newSimData.systemHealth = g.systemHealth();
-        }
-        
-        newSimData.totalOccupants = g.totalOccupants();
-        
-        const nowMs = Date.now();
-        if (nowMs - lastHistUpdateRef.current > 1000) {
-          lastHistUpdateRef.current = nowMs;
-          setLoadHistory(prev => {
-            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            // Add a small pseudo-random walk / sensor noise to make the curves characteristic
-            const pwrNoise = (Math.random() * 6 - 3); 
-            const co2Noise = (Math.random() * 4 - 2);
-            const pwrDraw = Number((g.buildingLoadMw() * 1000 + pwrNoise).toFixed(1));
-            const avgCo2 = Math.round(400 + g.totalOccupants() * 0.85 + co2Noise);
-            const newHist = [...prev, { time: timeStr, pwr: pwrDraw, co2: avgCo2 }];
-            if (newHist.length > 60) newHist.shift();
-            return newHist;
-          });
-        }
-      }
-
-      simDataRef.current = newSimData;
-      setSimData(newSimData);
-
-      // Carefully update React Flow nodes
-      setNodes(nds => nds.map(n => {
-        if (n.type === 'zone' && newSimData.zones[n.id]) {
-            return { ...n, data: { ...n.data, temp: newSimData.zones[n.id].temp.toFixed(1), alert: newSimData.zones[n.id].alert } };
-        }
-        if (n.type === 'vav' && newSimData.vavs[n.id]) {
-            return { ...n, data: { ...n.data, flow: newSimData.vavs[n.id].flow.toFixed(1) + ' m³/m' } };
-        }
-        if (n.type === 'ahu') {
-            return { ...n, data: { ...n.data, pressure: newSimData.ahuPressure } };
-        }
-        return n;
-      }));
-
-      // Update edge styles without rebuilding the array
-      setEdges(eds => eds.map(e => {
-        if (!e.data?.isFlow) return e;
-
-        const isFault = activeScenarioRef.current === 'fault';
-        const isRem = activeScenarioRef.current === 'remediating';
-        const gradientId = isFault ? 'flow-fault' : (isRem ? 'flow-rem' : 'flow-nominal');
-        const markerColor = isFault ? 'var(--accent-red)' : (isRem ? 'var(--accent-yellow)' : 'var(--accent-green)');
-        
-        return {
-           ...e,
-           className: !isFault ? 'edge-flow-vector-fast' : 'edge-flow-vector',
-           style: { ...e.style, stroke: `url(#${gradientId})`, strokeDasharray: isFault ? '4 4' : '5 5' },
-           markerEnd: { type: MarkerType.ArrowClosed, color: markerColor }
-        };
-      }));
-    };
-
-    return () => {
-      ws.close();
-      wsRef.current = null;
-    };
-  }, []);
+  }, [activeFloor, ontology]); // Only rebuild on floor or ontology change
 
   useEffect(() => {
     logEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -502,22 +332,26 @@ function App() {
     ? (simData.zones[faultTarget] || { label: faultTarget, temp: 0 }) 
     : Object.values(simData.zones).find(z => z.alert === true || z.alert === 'REMEDIATING') || { label: 'Unknown Zone', temp: 0 };
 
+  const selectedNode = nodes.find(n => n.selected);
+
   return (
     <div className="hud-container">
       
       <div className="three-d-canvas-wrapper">
-        <BuildingModel 
-          simState={simData}
-          activeFloor={activeFloor}
-          onFloorClick={setActiveFloor}
-          showAirflow={showWindSim}
-          selectedZone={selectedZone}
-          setSelectedZone={(zoneId) => {
-            setSelectedZone(zoneId);
-            setFaultTarget(zoneId);
-          }}
-          viewMode={viewMode}
-        />
+        <CanvasErrorBoundary>
+          <BuildingModel
+            simState={simData}
+            activeFloor={activeFloor}
+            onFloorClick={setActiveFloor}
+            showAirflow={showWindSim}
+            selectedZone={selectedZone}
+            setSelectedZone={(zoneId) => {
+              setSelectedZone(zoneId);
+              setFaultTarget(zoneId);
+            }}
+            viewMode={viewMode}
+          />
+        </CanvasErrorBoundary>
       </div>
 
       {/* AI INTERACTIVE MODAL (Non-blocking so user can watch the building fail) */}
@@ -739,102 +573,122 @@ function App() {
               </button>
             </div>
             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'var(--bg-obsidian)' }}>
-              <Canvas camera={{ position: [0, 40, 40], fov: 45 }}>
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[10, 20, 10]} intensity={1} />
-                <group position={[-10, -2, 0]}>
-                  <SingleFloorLayout 
-                    key={`minimap-layout-${activeFloor}`}
-                    floor={buildingData.floors.find(f => f.level === activeFloor)} 
-                    isActive={true} 
-                    simState={simData}
-                    selectedZone={selectedZone}
-                    setSelectedZone={setSelectedZone}
-                    hoveredZone={null}
-                    setHoveredZone={() => {}}
-                    onFloorClick={() => {}}
-                  />
-                  <AirflowVectorField simState={simData} activeFloor={activeFloor} selectedZone={selectedZone} />
-                </group>
-              </Canvas>
+              <CanvasErrorBoundary>
+                <Canvas camera={{ position: [0, 40, 40], fov: 45 }} dpr={[1, 1.5]}>
+                  <ambientLight intensity={0.5} />
+                  <directionalLight position={[10, 20, 10]} intensity={1} />
+                  <group position={[-10, -2, 0]}>
+                    <SingleFloorLayout
+                      key={`minimap-layout-${activeFloor}`}
+                      floor={buildingData.floors.find(f => f.level === activeFloor)}
+                      isActive={true}
+                      simState={simData}
+                      selectedZone={selectedZone}
+                      setSelectedZone={setSelectedZone}
+                      hoveredZone={null}
+                      setHoveredZone={() => {}}
+                      onFloorClick={() => {}}
+                    />
+                    <AirflowVectorField simState={simData} activeFloor={activeFloor} selectedZone={selectedZone} />
+                  </group>
+                </Canvas>
+              </CanvasErrorBoundary>
             </div>
           </div>
         </div>
       )}
 
       {/* LAYER 4: AI & TELEMETRY (Left Dock) */}
-      <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', zIndex: 50, display: 'flex', gap: '8px' }}>
+      <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', zIndex: 50, display: 'flex', gap: '8px', maxHeight: 'calc(100vh - 3rem)' }}>
         <button 
            onClick={() => setIsLeftPanelOpen(!isLeftPanelOpen)}
            style={{ 
              background: 'var(--bg-panel)', border: '1px solid var(--border-glass)', color: 'var(--text-primary)', 
-             padding: '8px 12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px'
+             borderRadius: '12px', padding: '12px', cursor: 'pointer', height: 'fit-content', display: 'flex', alignItems: 'center'
            }}
         >
-           <Activity size={16} color="var(--accent-blue)" /> 
-           <span style={{ fontSize: '10px', fontWeight: 'bold' }}>{isLeftPanelOpen ? 'HIDE INSIGHTS' : 'SHOW INSIGHTS'}</span>
+          <Activity size={20} color="var(--accent-blue)" />
         </button>
-      </div>
 
-      {isLeftPanelOpen && (
-        <aside className="hud-dock-left" style={{ top: '4.5rem', height: 'calc(100vh - 6rem)', width: `${leftPanelSize.w}px`, overflow: 'visible', position: 'relative' }}>
-          <div 
-            className="resize-handle" 
-            onPointerDown={(e) => {
-              e.preventDefault();
-              const startW = leftPanelSize.w;
-              const startX = e.clientX;
-              const onPointerMove = (moveEvent) => {
-                const dx = moveEvent.clientX - startX;
-                setLeftPanelSize({
-                  w: Math.max(280, Math.min(startW + dx, window.innerWidth * 0.5)),
-                });
-              };
-              const onPointerUp = () => {
-                document.removeEventListener('pointermove', onPointerMove);
-                document.removeEventListener('pointerup', onPointerUp);
-              };
-              document.addEventListener('pointermove', onPointerMove);
-              document.addEventListener('pointerup', onPointerUp);
-            }}
-            style={{
-              position: 'absolute', top: '50%', right: -10, transform: 'translateY(-50%)', width: 20, height: 40, background: 'var(--accent-blue)', 
-              cursor: 'ew-resize', zIndex: 100, borderRadius: '4px', border: '2px solid #000'
-            }} 
-          />
-          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', gap: '4px', paddingBottom: '12px', borderBottom: '1px solid var(--border-glass)', marginBottom: '12px' }}>
+        {isLeftPanelOpen && (
+          <div style={{ width: leftPanelSize.w, height: 'calc(100vh - 3rem)', background: 'var(--bg-panel)', border: '1px solid var(--border-glass)', borderRadius: '12px', display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
+            <div 
+              className="resize-handle" 
+              onPointerDown={(e) => {
+                e.preventDefault();
+                const startW = leftPanelSize.w;
+                const startX = e.clientX;
+                const onPointerMove = (moveEvent) => {
+                  const dx = moveEvent.clientX - startX;
+                  setLeftPanelSize({
+                    w: Math.max(280, Math.min(startW + dx, window.innerWidth * 0.5)),
+                  });
+                };
+                const onPointerUp = () => {
+                  document.removeEventListener('pointermove', onPointerMove);
+                  document.removeEventListener('pointerup', onPointerUp);
+                };
+                document.addEventListener('pointermove', onPointerMove);
+                document.addEventListener('pointerup', onPointerUp);
+              }}
+              style={{
+                position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', width: 10, height: 40, cursor: 'ew-resize', zIndex: 100
+              }} 
+            />
+            <div style={{ display: 'flex', borderBottom: '1px solid var(--border-glass)' }}>
               <button 
-                onClick={() => setActiveLeftTab('ai')} 
-                style={{ flex: 1, padding: '8px', background: activeLeftTab === 'ai' ? 'var(--accent-blue)' : 'rgba(255,255,255,0.05)', color: activeLeftTab === 'ai' ? '#000' : 'var(--text-secondary)', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '11px', transition: '0.2s' }}
+                onClick={() => setActiveLeftTab('ai')}
+                style={{ flex: 1, padding: '12px', background: activeLeftTab === 'ai' ? 'rgba(0, 163, 224, 0.1)' : 'transparent', color: activeLeftTab === 'ai' ? 'var(--accent-blue)' : 'var(--text-secondary)', border: 'none', borderBottom: activeLeftTab === 'ai' ? '2px solid var(--accent-blue)' : 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '10px' }}
               >
                 AI INSIGHTS
               </button>
               <button 
-                onClick={() => setActiveLeftTab('logs')} 
-                style={{ flex: 1, padding: '8px', background: activeLeftTab === 'logs' ? 'var(--accent-blue)' : 'rgba(255,255,255,0.05)', color: activeLeftTab === 'logs' ? '#000' : 'var(--text-secondary)', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '11px', transition: '0.2s' }}
+                onClick={() => setActiveLeftTab('telemetry')}
+                style={{ flex: 1, padding: '12px', background: activeLeftTab === 'telemetry' ? 'rgba(0, 163, 224, 0.1)' : 'transparent', color: activeLeftTab === 'telemetry' ? 'var(--accent-blue)' : 'var(--text-secondary)', border: 'none', borderBottom: activeLeftTab === 'telemetry' ? '2px solid var(--accent-blue)' : 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '10px' }}
               >
-                TELEMETRY LOGS
+                PROFILER
+              </button>
+              <button 
+                onClick={() => setActiveLeftTab('logs')}
+                style={{ flex: 1, padding: '12px', background: activeLeftTab === 'logs' ? 'rgba(0, 163, 224, 0.1)' : 'transparent', color: activeLeftTab === 'logs' ? 'var(--accent-blue)' : 'var(--text-secondary)', border: 'none', borderBottom: activeLeftTab === 'logs' ? '2px solid var(--accent-blue)' : 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '10px' }}
+              >
+                LOGS
               </button>
             </div>
             
-            <div style={{ flex: 1, overflow: 'hidden' }}>
-              {activeLeftTab === 'ai' ? (
+            <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+              {activeLeftTab === 'logs' ? (
+                <TelemetryLogs simData={simData} />
+              ) : activeLeftTab === 'telemetry' ? (
                 <TelemetryPanel 
                   simData={simData} 
-                  loadHistory={loadHistory} 
-                  activeScenario={activeScenario} 
+                  loadHistory={loadHistory}
+                  activeScenario={activeScenario}
                   faultTarget={faultTarget}
+                  onOpenMaintenance={() => setMaintenanceTarget(failingZone ? failingZone.bim_asset_id : null)}
                   autoPilot={autoPilot}
-                  onOpenMaintenance={(zid) => setMaintenanceTarget(zid)}
                 />
               ) : (
-                <TelemetryLogs simData={simData} />
+                <AiInsightsPanel 
+                  simData={simData} 
+                  activeScenario={activeScenario} 
+                  faultTarget={faultTarget} 
+                />
               )}
             </div>
           </div>
-        </aside>
-      )}
+        )}
+      </div>
+
+      {/* LAYER 2: Global Metrics Top Right */}
+      <GlobalMetricsPanel 
+        simData={simData} 
+        globalMetrics={globalMetrics}
+        loadHistory={loadHistory}
+        activeScenario={activeScenario}
+        selectedNode={selectedNode}
+        activeFloor={activeFloor}
+      />
 
       {maintenanceTarget && (
         <MaintenanceDrawer 

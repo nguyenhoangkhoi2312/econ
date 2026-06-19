@@ -1,44 +1,58 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Activity, AlertTriangle, Zap, Target, CheckCircle } from 'lucide-react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function TelemetryPanel({ simData, loadHistory, activeScenario, faultTarget, onOpenMaintenance, autoPilot }) {
 
-  // Generate some "historical baseline" points for the characteristic curve
-  // Extend the baseline to cover high-power zones (up to ~2000kW)
+  const [activeChartMode, setActiveChartMode] = useState('office_dcv');
+
   const historicalData = useMemo(() => {
     const data = [];
-    for (let i = 0; i < 300; i++) {
-      const co2 = 400 + Math.random() * 3000; // up to 3400 ppm
-      const basePower = 200 + ((co2 - 400) * 0.5); 
-      const actualPower = basePower + (Math.random() * 100 - 50); // wider scatter for realism
-      data.push({ x: Math.round(co2), y: Number(actualPower.toFixed(1)) });
+    if (activeChartMode === 'office_dcv') {
+      for (let i = 0; i < 300; i++) {
+        const co2 = 400 + Math.random() * 3000;
+        // Physically correct saturating curve: P_cool = P_base + alpha * N(CO2) + beta * Q_vent(CO2)
+        const co2_out = 400;
+        const n_est = Math.min(50, Math.max(0, (co2 - co2_out) / 20)); // N(CO2) saturates around 50 people
+        const q_vent = Math.max(0, co2 - co2_out) * 0.05;
+        const basePower = 200 + (3.5 * n_est) + (1.2 * q_vent);
+        const actualPower = basePower + (Math.random() * 20 - 10);
+        data.push({ x: Math.round(co2), y: Number(actualPower.toFixed(1)) });
+      }
+    } else if (activeChartMode === 'server_room') {
+      for (let i = 0; i < 300; i++) {
+        // Servers: IT Load (kW) vs Cooling Power (kW)
+        const itLoad = 100 + Math.random() * 900;
+        const coolingPower = itLoad * 0.35; // Approx PUE
+        const actualPower = coolingPower + (Math.random() * 10 - 5);
+        data.push({ x: Math.round(itLoad), y: Number(actualPower.toFixed(1)) });
+      }
     }
     return data;
-  }, []);
+  }, [activeChartMode]);
 
-  // Map the live zones onto the curve with a dynamic thermodynamic relationship
   const currentData = useMemo(() => {
-    return Object.values(simData.zones).map((z, idx) => {
-      // Base the power on actual simulated load
-      const yPower = z.load * 20; 
+    // Make sure z.archetype is handled (fallback to 'office_dcv' if missing)
+    const filteredZones = Object.values(simData.zones).filter(z => (z.archetype || 'office_dcv') === activeChartMode);
+    
+    return filteredZones.map((z, idx) => {
+      const isFaulting = (activeScenario === 'fault' && z.id === faultTarget);
       
-      // Calculate where this should lie on the ideal baseline X-axis
-      // y = 200 + (x - 400) * 0.5  =>  x = 400 + (y - 200) * 2
-      let idealX = 400 + (yPower - 200) * 2;
-      
-      // If there's a fault (very high temp), make the node deviate wildly to the right of the baseline!
-      if (z.temp > 28) {
-         idealX += (z.temp - 28) * 100;
+      if (activeChartMode === 'office_dcv') {
+        let yPower = z.load * 20; 
+        let co2 = 400 + (z.occupancy * 40);
+        // Fault introduces high co2 and power deviation
+        if (isFaulting) { co2 += 1000; yPower += 150; } 
+        return { name: z.label, x: Math.round(co2), y: Number(yPower.toFixed(1)), isFaulting };
+      } else {
+        let itLoad = z.baseHeatGain * 10 + (z.load * 10);
+        let yPower = z.load * 20; 
+        // Fault introduces high cooling power despite constant IT load
+        if (isFaulting) { yPower += 300; } 
+        return { name: z.label, x: Math.round(itLoad), y: Number(yPower.toFixed(1)), isFaulting };
       }
-      
-      return {
-        name: z.label,
-        x: Math.round(Math.max(400, idealX)),
-        y: Number(yPower.toFixed(1))
-      };
     });
-  }, [simData]);
+  }, [simData, activeChartMode, activeScenario, faultTarget]);
 
   // Insights Data logic
   const isFault = activeScenario === 'fault';
@@ -48,7 +62,6 @@ export default function TelemetryPanel({ simData, loadHistory, activeScenario, f
   const unoccupiedWasting = Object.values(simData.zones).filter(z => z.occupancy === 0).slice(0, 1);
   const outOfBand = Object.values(simData.zones).filter(z => z.temp > z.setpoint + z.deadband && activeScenario !== 'fault');
 
-  // Dynamic RCA based on zone type
   const getRCA = (zone) => {
     if (!zone) return { cause: 'Unknown error', blastRadius: 1, confidence: 0 };
     if (zone.type === 'server-room') {
@@ -66,20 +79,37 @@ export default function TelemetryPanel({ simData, loadHistory, activeScenario, f
   const rcaData = getRCA(faultZone);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '1rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       
       {/* PRIMARY ANALYTICS: Characteristic Curve */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '300px' }}>
-        <div style={{ fontSize: '10px', fontWeight: 'bold', color: 'var(--text-secondary)', letterSpacing: '1px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Activity size={12} color="var(--accent-blue)" /> THERMODYNAMIC CHARACTERISTIC (CO₂ vs POWER)
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '350px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+          <div style={{ fontSize: '10px', fontWeight: 'bold', color: 'var(--text-secondary)', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Activity size={12} color="var(--accent-blue)" /> 
+            {activeChartMode === 'office_dcv' ? 'OFFICE DCV (CO₂ vs COOLING kW)' : 'SERVER ROOM (IT kW vs COOLING kW)'}
+          </div>
+          <div style={{ display: 'flex', gap: '4px' }}>
+            <button 
+              onClick={() => setActiveChartMode('office_dcv')}
+              style={{ background: activeChartMode === 'office_dcv' ? 'var(--accent-blue)' : 'var(--bg-obsidian)', color: activeChartMode === 'office_dcv' ? '#000' : 'var(--text-secondary)', border: '1px solid var(--border-glass)', fontSize: '9px', padding: '2px 6px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+            >
+              OFFICE
+            </button>
+            <button 
+              onClick={() => setActiveChartMode('server_room')}
+              style={{ background: activeChartMode === 'server_room' ? 'var(--accent-blue)' : 'var(--bg-obsidian)', color: activeChartMode === 'server_room' ? '#000' : 'var(--text-secondary)', border: '1px solid var(--border-glass)', fontSize: '9px', padding: '2px 6px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+            >
+              SERVER
+            </button>
+          </div>
         </div>
         
         <div style={{ flex: 1, background: 'rgba(0,0,0,0.4)', borderRadius: '8px', padding: '12px', border: '1px solid var(--border-glass)' }}>
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-              <XAxis type="number" dataKey="x" name="CO₂" unit=" ppm" domain={['auto', 'auto']} stroke="var(--text-secondary)" fontSize={10} tickMargin={8} />
-              <YAxis type="number" dataKey="y" name="Power" unit=" kW" domain={['auto', 'auto']} stroke="var(--text-secondary)" fontSize={10} width={45} />
+              <XAxis type="number" dataKey="x" name={activeChartMode === 'office_dcv' ? 'CO₂' : 'IT Load'} unit={activeChartMode === 'office_dcv' ? ' ppm' : ' kW'} domain={['auto', 'auto']} stroke="var(--text-secondary)" fontSize={10} tickMargin={8} />
+              <YAxis type="number" dataKey="y" name="Cooling" unit=" kW" domain={['auto', 'auto']} stroke="var(--text-secondary)" fontSize={10} width={45} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: '#111', border: '1px solid var(--border-glass)' }} />
               <Scatter name="Historical Baseline" data={historicalData} fill="rgba(255,255,255,0.1)" isAnimationActive={false} />
               <Scatter name="Live Telemetry Node" data={currentData} fill="var(--accent-yellow)" isAnimationActive={false} />
@@ -101,7 +131,7 @@ export default function TelemetryPanel({ simData, loadHistory, activeScenario, f
       <hr style={{ border: 'none', borderTop: '1px solid var(--border-glass)' }} />
 
       {/* AI OPERATIONAL INSIGHTS (The "Why" and "What to do") */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ fontSize: '10px', fontWeight: 'bold', color: 'var(--text-secondary)', letterSpacing: '1px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Zap size={12} color="var(--accent-blue)" /> AI OPERATIONAL INSIGHTS
         </div>

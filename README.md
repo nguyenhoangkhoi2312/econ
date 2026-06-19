@@ -34,7 +34,17 @@ During **Sprint 1 (Core Architecture & Simulation)**, we built a robust and high
    - **Thermodynamic Characteristic Chart:** A real-time auto-scaling Recharts scatter plot showing CO₂ vs Power. The live telemetry dots dynamically follow the ideal thermodynamic slope under normal conditions, but violently break away from the baseline during injected faults to visibly demonstrate anomalies.
    - **Live Terminal Logging:** The Telemetry Logs tab renders a hacker-style real-time terminal of up to 30 active zones, showcasing live temperatures, loads, and occupancy streaming directly from the WASM engine.
 
-## 🚧 Unimplemented Features Report
+7. **Mobile UI Adaptation (Tesla-Style)**
+   - Designed a responsive `MobileApp.jsx` interface imitating the Tesla app layout for rapid macro-level facility monitoring.
+   - Implemented `100dvh` (Dynamic Viewport Height) logic for iOS Safari support to ensure smooth native scrolling and safe-area padding underneath the browser's dynamic address bar.
+   - Built bottom-drawer drill-downs to allow tapping on zones and revealing live telemetry metrics without leaving the 3D map context.
+
+## 🚧 Current Limitations & Challenges
+
+### 1. Mobile 3D Scaling & React Three Fiber Strict Mode
+- **Challenge:** Adapting the desktop 3D `BuildingModel` for mobile viewports required dynamically passing `isMobile` props deeply through nested components (`FloorPlate`, `ZoneRenderer`). 
+- **Limitation:** React Three Fiber's event system and Canvas error boundaries are extremely sensitive to undefined variables. Aggressively injecting responsive props caused fatal WebGL unmounting in strict mode, necessitating careful prop-drilling or Context API usage to prevent UI regressions on desktop.
+- **UI Clipping:** Ensuring floating `<Html>` labels in the 3D scene do not overlap native CSS overlay menus on smaller screens requires manual z-index and conditional rendering management.
 
 While our recent sprints successfully proved the core architecture, 3D visualizations, and interactive IoT drill-downs, several critical features remain unimplemented before the platform is ready for production.
 
