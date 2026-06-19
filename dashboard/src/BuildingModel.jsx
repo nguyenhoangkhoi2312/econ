@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Html, Edges } from '@react-three/drei';
 import * as THREE from 'three';
@@ -239,23 +239,57 @@ function FloorPlate({ floor, isActive, onClick, simState, viewMode = 'hybrid' })
         <Edges color={hasAlert ? "#ff0000" : (isActive ? "#ffffff" : hovered ? "#00ffff" : "#444444")} threshold={15} />
       </mesh>
 
-      {/* Floating Live Data Label */}
+      {/* Tesla-Style Vertical Drop Label */}
       {(isActive || hovered || hasAlert) && (
-        <Html position={[-25, floor.height / 2, 20]} center zIndexRange={[100, 0]} style={{ transition: 'all 0.2s', pointerEvents: 'none' }}>
+        <Html position={[-30 + (floor.level * 1.8), floor.height, 0]} style={{ pointerEvents: 'none' }}>
           <div style={{ 
-            color: hasAlert ? '#ff3333' : (isActive ? '#fff' : '#00ffff'), 
-            background: hasAlert ? 'rgba(50,0,0,0.85)' : 'rgba(0,0,0,0.85)', 
-            border: `1px solid ${hasAlert ? '#ff0000' : (isActive ? '#fff' : '#00ffff')}`, 
-            padding: '6px 12px', fontSize: '11px', fontFamily: 'monospace', whiteSpace: 'nowrap', 
-            textShadow: hasAlert ? '0 0 10px rgba(255,0,0,0.8)' : '0 0 5px rgba(0,229,255,0.5)',
-            transform: hasAlert ? 'scale(1.1)' : 'scale(1)',
-            transition: 'all 0.3s'
+            position: 'absolute', 
+            bottom: '0px', 
+            left: '-60px', 
+            width: '120px', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            zIndex: 10
           }}>
-            <strong style={{ fontSize: '12px' }}>{hasAlert ? '⚠️ ' : ''}[ L{floor.level} ]</strong><br/>
-            {floor.name}<br/>
-            <span style={{ color: hasAlert ? '#ff5555' : '#00e5ff' }}>
-              {hasAlert ? 'CRITICAL FAULT' : `ZONES: ${floor.zones.length}`}
-            </span>
+            {/* The Text Tag (No Background) */}
+            <div style={{ 
+              color: hasAlert ? '#ff453a' : '#ffffff', 
+              fontSize: '13px', 
+              fontFamily: 'system-ui, -apple-system, sans-serif', 
+              fontWeight: '700',
+              letterSpacing: '0.05em',
+              textShadow: '0 2px 8px rgba(0,0,0,0.8)'
+            }}>
+              {hasAlert ? '⚠️ ' : ''}LEVEL {floor.level}
+            </div>
+            <div style={{ 
+              color: hasAlert ? '#ff453a' : 'rgba(255,255,255,0.7)', 
+              fontSize: '10px', 
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+            }}>
+              {hasAlert ? 'CRITICAL FAULT' : `${floor.zones.length} ZONES`}
+            </div>
+
+            {/* Vertical Drop Line */}
+            <div style={{ 
+              width: '1px', 
+              height: '40px', 
+              backgroundColor: hasAlert ? 'rgba(255,69,58,0.8)' : 'rgba(255,255,255,0.4)', 
+              margin: '6px 0' 
+            }} />
+            
+            {/* Anchor Dot */}
+            <div style={{ 
+              width: '5px', 
+              height: '5px', 
+              borderRadius: '50%', 
+              backgroundColor: hasAlert ? '#ff453a' : '#ffffff', 
+              marginBottom: '-2px',
+              boxShadow: hasAlert ? '0 0 8px #ff453a' : '0 0 8px rgba(255,255,255,0.8)'
+            }} />
           </div>
         </Html>
       )}
@@ -456,19 +490,56 @@ function DynamicControls({ targetX, targetY, targetZ, isZoomed }) {
   const controlsRef = useRef();
   const { camera } = useThree();
   
+  // Detect mobile vs desktop to adjust default framing and visual center
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
+  // The building footprint is at [-30, 0, -20], so its true center is [-15, 0, -10].
+  // Desktop target should be very close to true center to match screenshot perfectly.
+  const visualCenterX = isMobile ? -15 : -12; 
+  
+  // Focus on the base of the building by default
+  const defaultTarget = useMemo(() => new THREE.Vector3(visualCenterX, 5, -10), [visualCenterX]);
+  
+  // Camera height is fixed at the highest floor (y=50) looking down
+  const defaultPosition = useMemo(() => new THREE.Vector3(
+    isMobile ? 45 : 55, 
+    50, // Always position at highest floor height
+    isMobile ? 45 : 55
+  ), [isMobile]);
+
+  const [animating, setAnimating] = useState(false);
+  const [targetCameraPos, setTargetCameraPos] = useState(defaultPosition);
+  const [targetLookAt, setTargetLookAt] = useState(defaultTarget);
+
+  useEffect(() => {
+    if (isZoomed) {
+      // Keep the zoomed target shifted on desktop to maintain visual centering
+      const xOffset = isMobile ? 0 : 3;
+      // Camera always stays at highest floor height (y=50) looking down at the current floor
+      setTargetCameraPos(new THREE.Vector3(targetX + 15 + xOffset, 50, targetZ + 15));
+      setTargetLookAt(new THREE.Vector3(targetX + xOffset, targetY, targetZ));
+      setAnimating(true);
+    } else {
+      setTargetCameraPos(defaultPosition);
+      setTargetLookAt(defaultTarget);
+      setAnimating(true);
+    }
+  }, [isZoomed, targetX, targetY, targetZ, defaultPosition, defaultTarget, isMobile]);
+  
   useFrame(() => {
-    if (controlsRef.current) {
-      if (isZoomed) {
-        controlsRef.current.target.lerp(new THREE.Vector3(targetX, targetY, targetZ), 0.06);
-        camera.position.lerp(new THREE.Vector3(targetX + 8, targetY + 6, targetZ + 8), 0.06);
-      } else {
-        controlsRef.current.target.lerp(new THREE.Vector3(0, 15, 0), 0.06);
+    if (controlsRef.current && animating) {
+      controlsRef.current.target.lerp(targetLookAt, 0.08);
+      camera.position.lerp(targetCameraPos, 0.08);
+      
+      if (camera.position.distanceTo(targetCameraPos) < 1.5) {
+        setAnimating(false);
       }
       controlsRef.current.update();
     }
   });
 
-  return <OrbitControls ref={controlsRef} />;
+  // Explicitly set the initial target so it never points into the void on load
+  return <OrbitControls ref={controlsRef} target={[visualCenterX, 22, -10]} makeDefault />;
 }
 
 // ========== STEP 4.5: Physical Infrastructure Layer ==========
@@ -568,8 +639,8 @@ export default function BuildingModel({ simState, activeFloor, onFloorClick, sho
 
   return (
     <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 1 }}>
-      <Canvas camera={{ position: [50, 40, 50], fov: 45 }}>
-        <color attach="background" args={['#000000']} />
+      <Canvas camera={{ position: [80, 55, 80], fov: 45 }}>
+        {/* Transparent background for weather overlay */}
         <ambientLight intensity={0.4} />
         <directionalLight position={[10, 20, 10]} intensity={1.2} />
         

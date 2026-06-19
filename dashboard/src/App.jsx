@@ -10,6 +10,8 @@ import TelemetryLogs from './TelemetryLogs';
 import MaintenanceDrawer from './MaintenanceDrawer';
 import AiInsightsPanel from './AiInsightsPanel';
 import * as flatbuffers from 'flatbuffers';
+import MobileImpactScreen from './MobileImpactScreen';
+import UIErrorBoundary from './UIErrorBoundary';
 import { SimState } from './telemetry';
 import { useDigitalTwin } from './useDigitalTwin';
 import AirflowVectorField from './AirflowVectorField';
@@ -484,6 +486,7 @@ function App() {
             </div>
           </div>
 
+          <UIErrorBoundary name="Topology Map">
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -521,6 +524,7 @@ function App() {
               </defs>
             </svg>
           </ReactFlow>
+          </UIErrorBoundary>
         </div>
       </div>
 

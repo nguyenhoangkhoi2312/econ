@@ -7,6 +7,7 @@ import TelemetryPanel from './TelemetryPanel';
 import TelemetryLogs from './TelemetryLogs';
 import MobileEnergyScreen from './MobileEnergyScreen';
 import MobileImpactScreen from './MobileImpactScreen';
+import LiveWeatherBackground from './LiveWeatherBackground';
 import buildingData from './building-data.json';
 
 export default function MobileApp() {
@@ -50,21 +51,19 @@ export default function MobileApp() {
   const focusZone = failingZone ? failingZone.id : selectedZone;
 
   return (
-    <div style={{ position: 'relative', height: '100dvh', width: '100vw', background: '#000', overflow: 'hidden', color: '#fff', fontFamily: 'system-ui, -apple-system, sans-serif', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ position: 'relative', height: '100dvh', width: '100vw', background: 'transparent', overflow: 'hidden', color: '#fff', fontFamily: 'system-ui, -apple-system, sans-serif', display: 'flex', flexDirection: 'column' }}>
       
+      {/* Dynamic Weather Background */}
+      <LiveWeatherBackground lat={10.8231} lon={106.6297} />
+
       {/* FLOATING HEADER */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '24px 20px', display: 'flex', justifyContent: 'space-between', zIndex: 10, pointerEvents: 'none' }}>
         <div>
-          <div style={{ fontSize: '24px', fontWeight: '600' }}>ECOSYNC Center</div>
+          <div style={{ fontSize: '24px', fontWeight: '600' }}>ECON Center</div>
           <div style={{ fontSize: '14px', color: failingZone ? '#FF3B30' : '#34C759', fontWeight: '500', marginTop: '2px' }}>
             {failingZone
               ? `⚠ ${failingZone.label} · ${Number(failingZone.temp).toFixed(1)}°C`
               : 'Nominal Operation'}
-          </div>
-        </div>
-        <div style={{ pointerEvents: 'auto' }}>
-          <div style={{ width: '32px', height: '32px', borderRadius: '16px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <User size={18} color="#fff" />
           </div>
         </div>
       </div>
@@ -108,39 +107,40 @@ export default function MobileApp() {
         {!selectedZone && (
           <>
             {/* HVAC Load (Top Left) */}
-            <div style={{ position: 'absolute', top: '100px', left: '20px', display: 'flex', flexDirection: 'column', zIndex: 10, pointerEvents: 'none' }}>
+            {/* Total HVAC Load (Top Left) */}
+            <div style={{ position: 'absolute', top: '100px', left: '20px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', zIndex: 10, pointerEvents: 'none' }}>
                <div style={{ color: '#ffffff', fontSize: '28px', fontWeight: '600', lineHeight: 1, marginBottom: '4px' }}>{(globalMetrics?.coolingLoadMw * 1000 || 0).toFixed(0)} <span style={{fontSize: '14px', color:'rgba(255,255,255,0.55)'}}>kW</span></div>
                <div style={{ color: 'rgba(255,255,255,0.68)', fontSize: '11px', fontWeight: '600', letterSpacing: '0.16em', textTransform: 'uppercase' }}>Total HVAC Load</div>
-               <svg style={{ position: 'absolute', top: '100%', left: '10px', width: '100px', height: '100px', overflow: 'visible' }}>
-                  <line x1="0" y1="0" x2="50" y2="60" stroke="#F5C242" strokeWidth="1.5" opacity="0.55" strokeLinecap="round" className="flow-line-forward" />
-               </svg>
+               {/* Tesla-Style Vertical Drop */}
+               <div style={{ width: '1px', height: '35px', backgroundColor: 'rgba(245, 194, 66, 0.4)', marginLeft: '16px', marginTop: '8px' }} />
+               <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#F5C242', marginLeft: '14px', boxShadow: '0 0 8px #F5C242' }} />
             </div>
 
             {/* Cooling Output (Top Right) */}
             <div style={{ position: 'absolute', top: '100px', right: '20px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10, pointerEvents: 'none' }}>
                <div style={{ color: '#ffffff', fontSize: '28px', fontWeight: '600', lineHeight: 1, marginBottom: '4px' }}>{((globalMetrics?.coolingLoadMw * 1000) / 3.517 || 0).toFixed(0)} <span style={{fontSize: '14px', color:'rgba(255,255,255,0.55)'}}>Tons</span></div>
                <div style={{ color: 'rgba(255,255,255,0.68)', fontSize: '11px', fontWeight: '600', letterSpacing: '0.16em', textTransform: 'uppercase' }}>Cooling Output</div>
-               <svg style={{ position: 'absolute', top: '100%', right: '10px', width: '100px', height: '100px', overflow: 'visible' }}>
-                  <line x1="100" y1="0" x2="30" y2="70" stroke="#4A90E2" strokeWidth="1.5" opacity="0.55" strokeLinecap="round" className="flow-line-reverse" />
-               </svg>
+               {/* Tesla-Style Vertical Drop */}
+               <div style={{ width: '1px', height: '35px', backgroundColor: 'rgba(74, 144, 226, 0.4)', marginRight: '16px', marginTop: '8px' }} />
+               <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#4A90E2', marginRight: '14px', boxShadow: '0 0 8px #4A90E2' }} />
             </div>
 
             {/* Chiller COP (Bottom Left) */}
-            <div style={{ position: 'absolute', bottom: '40px', left: '20px', display: 'flex', flexDirection: 'column', zIndex: 10, pointerEvents: 'none' }}>
+            <div style={{ position: 'absolute', top: '280px', left: '20px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', zIndex: 10, pointerEvents: 'none' }}>
+               {/* Tesla-Style Vertical Shoot-Up */}
+               <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#3DDC84', marginLeft: '14px', boxShadow: '0 0 8px #3DDC84' }} />
+               <div style={{ width: '1px', height: '35px', backgroundColor: 'rgba(61, 220, 132, 0.4)', marginLeft: '16px', marginBottom: '8px' }} />
                <div style={{ color: '#ffffff', fontSize: '28px', fontWeight: '600', lineHeight: 1, marginBottom: '4px' }}>4.2 <span style={{fontSize: '14px', color:'rgba(255,255,255,0.55)'}}>COP</span></div>
                <div style={{ color: 'rgba(255,255,255,0.68)', fontSize: '11px', fontWeight: '600', letterSpacing: '0.16em', textTransform: 'uppercase' }}>Plant Efficiency</div>
-               <svg style={{ position: 'absolute', bottom: '100%', left: '20px', width: '100px', height: '100px', overflow: 'visible' }}>
-                  <line x1="0" y1="100" x2="50" y2="30" stroke="#3DDC84" strokeWidth="1.5" opacity="0.55" strokeLinecap="round" className="flow-line-forward" />
-               </svg>
             </div>
 
             {/* Grid Power (Bottom Right) */}
-            <div style={{ position: 'absolute', bottom: '40px', right: '20px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10, pointerEvents: 'none' }}>
+            <div style={{ position: 'absolute', top: '280px', right: '20px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10, pointerEvents: 'none' }}>
+               {/* Tesla-Style Vertical Shoot-Up */}
+               <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#B8B8B8', marginRight: '14px', boxShadow: '0 0 8px rgba(255,255,255,0.5)' }} />
+               <div style={{ width: '1px', height: '35px', backgroundColor: 'rgba(184, 184, 184, 0.4)', marginRight: '16px', marginBottom: '8px' }} />
                <div style={{ color: '#ffffff', fontSize: '28px', fontWeight: '600', lineHeight: 1, marginBottom: '4px' }}>{(globalMetrics?.gridLoadMw || 0).toFixed(1)} <span style={{fontSize: '14px', color:'rgba(255,255,255,0.55)'}}>MW</span></div>
                <div style={{ color: 'rgba(255,255,255,0.68)', fontSize: '11px', fontWeight: '600', letterSpacing: '0.16em', textTransform: 'uppercase' }}>Grid Power</div>
-               <svg style={{ position: 'absolute', bottom: '100%', right: '20px', width: '100px', height: '100px', overflow: 'visible' }}>
-                  <line x1="100" y1="100" x2="40" y2="20" stroke="#B8B8B8" strokeWidth="1.5" opacity="0.55" strokeLinecap="round" className="flow-line-reverse" />
-               </svg>
             </div>
           </>
         )}
@@ -151,7 +151,7 @@ export default function MobileApp() {
 
       {/* BOTTOM SECTION (LIST MENU OR DRAWER) */}
       {!selectedZone ? (
-        <div style={{ height: '45vh', padding: '0 20px', overflowY: 'auto', WebkitOverflowScrolling: 'touch', zIndex: 5 }}>
+        <div style={{ height: '35vh', padding: '0 20px 80px 20px', overflowY: 'auto', WebkitOverflowScrolling: 'touch', zIndex: 5 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '10px' }}>
           
           <MenuItem 
