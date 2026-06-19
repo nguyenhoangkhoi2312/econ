@@ -87,6 +87,31 @@ npm run dev
 - Open your web browser and navigate to `http://localhost:5173` (or the port Vite provides in your terminal).
 - You should immediately see the 3D building render and the topology map populate with live temperature data streaming from the Go backend.
 
+### 4. Testing the Backend via CLI Dashboard
+For backend testing and telemetry debugging, you can use the standalone Go CLI Dashboard (htop-style).
+```bash
+# Open a new terminal and navigate to the CLI directory
+cd server/cli
+
+# Run the CLI dashboard
+go run dashboard.go
+```
+*Note: The CLI dashboard dynamically sorts the hottest thermal zones to the top of your terminal and natively reads the high-speed FlatBuffers binary stream.*
+
+### 5. Running the Autonomous DeepFloorplan Scanner
+The `ai_modules/branch_b_digitization/deepfloorplan` directory contains a Streamlit app to autonomously digitize any architectural blueprint.
+```bash
+# Navigate to the DeepFloorplan directory
+cd ai_modules/branch_b_digitization/deepfloorplan
+
+# Install dependencies (if you haven't already)
+pip install streamlit opencv-python networkx
+
+# Run the Streamlit UI
+streamlit run app.py
+```
+*Note: The AI will autonomously grid-search OpenCV parameters to mathematically derive the Space Syntax Dual Graph of the blueprint.*
+
 ### Troubleshooting
 - **Frontend isn't receiving data?** Ensure the backend is running and port `8080` is not blocked. Check the browser console (F12) for WebSocket connection errors.
 - **Docker port conflict?** If port `8080` or `5432` is already in use by another application on your machine, stop the conflicting application or map different ports in the `docker-compose.yml` file.

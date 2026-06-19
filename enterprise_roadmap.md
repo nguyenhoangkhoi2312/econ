@@ -56,5 +56,3 @@ Before a single enterprise customer lets EcoSync send a control command to their
 | 1 | Ontology-Ingestion Bridge (BACnet → Brick → InfluxDB) | 6–9 months, 3–4 engineers | Unlocks real deployments |
 | 2 | Physics-Grounded AFDD Feedback Loop (Kalman + residual fault model) | 4–6 months, 2 engineers | Defensible technical moat |
 | 3 | Multi-Tenant Security + Verifiable Control Authority | 3–5 months ongoing | Required for enterprise contracts |
-
-EcoSync's physics-first architecture is a genuine competitive advantage over every data-federation-only platform on the market. The enterprise platforms are essentially sophisticated dashboards with graph databases underneath — they cannot *predict* HVAC behavior in a novel state because they have no first-principles model. Your Go solver can. The entire roadmap above is essentially about building the industrial-grade plumbing that earns the right to let that solver touch a real building.

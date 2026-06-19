@@ -120,45 +120,42 @@ const nodeTypes = {
   floorplan: FloorplanImageNode
 };
 
-// Auto-generates a clean AHU -> VAV -> Zone P&ID for the active floor from
-// whatever zones/VAVs exist in the loaded blueprint. Layout is structural (a
-// single evenly-spaced row of zone columns fanning out from the AHU) rather than
-// raw physical centroids, so it stays readable for any number of zones and any
-// building. Columns are ordered west->east by centroid so they still echo the
-// floor plan. Zones without a mapped VAV connect straight to the AHU.
-const COL_SPACING = 210;
-const buildTopologyFromSim = (simState, activeFloor) => {
+const SCALE = 22; // Physical scaling multiplier
+
+const buildTopologyFromSim = (simState, activeFloor, ontology) => {
   const nodes = [];
   const edges = [];
 
   const activeZones = Object.values(simState.zones)
-    .filter(z => z.level === activeFloor)
-    .sort((a, b) => (a.centroid.x - b.centroid.x) || (a.centroid.y - b.centroid.y));
+    .filter(z => z.level === activeFloor);
 
-  const totalWidth = Math.max(0, activeZones.length - 1) * COL_SPACING;
-  const x0 = -totalWidth / 2;
-
-  // AHU root, centered above the fan-out
+  // AHU root, placed outside the North perimeter of the floor plan
   nodes.push({
-    id: 'ahu-main', type: 'ahu', position: { x: -45, y: -300 },
+    id: 'ahu-main', type: 'ahu', position: { x: -45, y: -25 * SCALE },
     data: { label: 'AHU-MAIN', status: simState.scenario === 'fault' ? 'FAULT' : 'NOMINAL', pressure: simState.ahuPressure }
   });
 
-  // Index VAVs by the zone they serve
-  const vavByZone = {};
-  Object.values(simState.vavs).forEach(v => { vavByZone[v.targetZone] = v; });
+  const relationships = ontology ? ontology.relationships : [];
 
-  activeZones.forEach((z, i) => {
-    const x = x0 + i * COL_SPACING;
+  activeZones.forEach((z) => {
+    // 1. Map physical 3D centroid coordinates to 2D React Flow canvas
+    // Subtracting 30 (width/2) and 20 (depth/2) centers the building around 0,0
+    const x = (z.centroid.x - 30) * SCALE;
+    const y = (z.centroid.y - 20) * SCALE;
+
     const isServerFault = simState.scenario === 'fault' && z.type === 'server-room';
     const isRem = simState.scenario === 'remediating' && (z.type === 'server-room' || z.type === 'core');
-    const stroke = isServerFault ? 'var(--accent-red)' : (isRem ? 'var(--accent-yellow)' : 'var(--accent-blue)');
-    const edgeStyle = { stroke, strokeWidth: 1.5, strokeDasharray: isServerFault ? '4 4' : '5 5' };
-    const markerEnd = { type: MarkerType.ArrowClosed, color: stroke };
+    
+    // 2. SVG Linear Gradient Vector Colors
+    const gradientId = isServerFault ? 'flow-fault' : (isRem ? 'flow-rem' : 'flow-nominal');
+    const markerColor = isServerFault ? 'var(--accent-red)' : (isRem ? 'var(--accent-yellow)' : 'var(--accent-green)');
+    
+    const edgeStyle = { stroke: `url(#${gradientId})`, strokeWidth: 2, strokeDasharray: isServerFault ? '4 4' : '5 5' };
+    const markerEnd = { type: MarkerType.ArrowClosed, color: markerColor };
     const className = !isServerFault ? 'edge-flow-vector-fast' : 'edge-flow-vector';
 
     nodes.push({
-      id: z.id, type: 'zone', position: { x, y: 120 }, draggable: false,
+      id: z.id, type: 'zone', position: { x: x - 60, y: y }, draggable: false,
       data: {
         label: z.label, temp: z.temp, setpoint: z.setpoint, deadband: z.deadband,
         occupancy: z.occupancy, alert: z.alert, integration_score: z.integration_score,
@@ -166,17 +163,30 @@ const buildTopologyFromSim = (simState, activeFloor) => {
       }
     });
 
-    const v = vavByZone[z.id];
-    if (v) {
-      nodes.push({
-        id: v.id, type: 'vav', position: { x: x + 20, y: -50 }, draggable: false,
-        data: { label: v.id.toUpperCase(), flow: (v.flow || 0).toFixed(1) + ' m³/m' }
-      });
-      edges.push({ id: `e-ahu-${v.id}`, source: 'ahu-main', target: v.id, type: 'step', animated: true, className, style: edgeStyle, markerEnd });
-      edges.push({ id: `e-${v.id}-${z.id}`, source: v.id, target: z.id, type: 'step', animated: true, className, style: edgeStyle, markerEnd });
+    // 3. Topology mapping driven by Brick Schema semantic ontology!
+    // Find what feeds this zone in the graph
+    const feedsRel = relationships.find(r => r.target === z.id && r.predicate === 'brick:feeds');
+
+    if (feedsRel) {
+      const vavId = feedsRel.source;
+      const v = simState.vavs[vavId];
+      if (v) {
+        // Draw the VAV node
+        nodes.push({
+          id: v.id, type: 'vav', position: { x: x - 15, y: y - 80 }, draggable: false,
+          data: { label: v.id.toUpperCase(), flow: (v.flow || 0).toFixed(1) + ' m³/m' }
+        });
+        
+        // Find what feeds the VAV (usually the AHU)
+        const ahuRel = relationships.find(r => r.target === v.id && r.predicate === 'brick:feeds');
+        const sourceAhu = ahuRel ? ahuRel.source : 'ahu-main';
+
+        edges.push({ id: `e-${sourceAhu}-${v.id}`, source: sourceAhu, target: v.id, type: 'smoothstep', animated: true, className, style: edgeStyle, markerEnd });
+        edges.push({ id: `e-${v.id}-${z.id}`, source: v.id, target: z.id, type: 'smoothstep', animated: true, className, style: edgeStyle, markerEnd });
+      }
     } else {
-      // No dedicated VAV in this blueprint -> hang the zone directly off the AHU
-      edges.push({ id: `e-ahu-${z.id}`, source: 'ahu-main', target: z.id, type: 'step', animated: true, className, style: edgeStyle, markerEnd });
+      // Fallback if no relationship found
+      edges.push({ id: `e-ahu-${z.id}`, source: 'ahu-main', target: z.id, type: 'smoothstep', animated: true, className, style: edgeStyle, markerEnd });
     }
   });
 
@@ -210,12 +220,22 @@ function App() {
   const [selectedZone, setSelectedZone] = useState(null);
   const [faultTarget, setFaultTarget] = useState('zone-server-lvl8');
   const [showAiModal, setShowAiModal] = useState(false);
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
   const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(false);
   const [showWindSim, setShowWindSim] = useState(false);
-  
+  const [ontology, setOntology] = useState(null);
+
+  // Fetch Semantic Ontology on load
+  useEffect(() => {
+    fetch('http://localhost:8080/api/ontology')
+      .then(res => res.json())
+      .then(data => setOntology(data))
+      .catch(err => console.error("Failed to load Brick ontology:", err));
+  }, []);
+
   // Initial topology
   const initialData = useMemo(() => getInitialSimData(), []);
-  const initialTopo = useMemo(() => buildTopologyFromSim(initialData, 6), [initialData]);
+  const initialTopo = useMemo(() => buildTopologyFromSim(initialData, 6, ontology), [initialData, ontology]);
   const [nodes, setNodes] = useState(initialTopo.nodes);
   const [edges, setEdges] = useState(initialTopo.edges);
   const [liveLogs, setLiveLogs] = useState([]);
@@ -268,13 +288,13 @@ function App() {
     }, 8000);
   };
 
-  // When activeFloor changes, completely rebuild the topology
+  // When activeFloor changes or ontology loads, completely rebuild the topology
   useEffect(() => {
     activeFloorRef.current = activeFloor;
-    const topo = buildTopologyFromSim(simDataRef.current, activeFloor);
+    const topo = buildTopologyFromSim(simDataRef.current, activeFloor, ontology);
     setNodes(topo.nodes);
     setEdges(topo.edges);
-  }, [activeFloor]);
+  }, [activeFloor, ontology]);
 
   // Physics Engine Loop (WebSocket FlatBuffers Stream)
   useEffect(() => {
@@ -341,7 +361,7 @@ function App() {
       }));
 
       // Update edge styles based on flow
-      const newTopo = buildTopologyFromSim(newSimData, activeFloorRef.current);
+      const newTopo = buildTopologyFromSim(newSimData, activeFloorRef.current, ontology);
       setEdges(newTopo.edges);
     };
 
@@ -446,12 +466,28 @@ function App() {
       )}
 
       {/* LAYER 1: React Flow Topology in Bottom Right Corner */}
-      <div className="minimap-wrapper" style={{ width: '600px', height: '400px', bottom: '24px', right: '24px', padding: 0, overflow: 'hidden' }}>
+      <div 
+        className="minimap-wrapper" 
+        style={isMapExpanded ? {
+          position: 'absolute', top: '24px', right: '24px', bottom: '24px', left: '460px', zIndex: 100, background: 'var(--bg-obsidian)', border: '1px solid var(--border-glass)', borderRadius: '12px', overflow: 'hidden'
+        } : { 
+          position: 'absolute', width: '600px', height: '400px', bottom: '24px', right: '24px', padding: 0, overflow: 'hidden', resize: 'both', minWidth: '400px', minHeight: '300px', zIndex: 10
+        }}
+      >
         <div className="topology-panel" style={{ width: '100%', height: '100%', position: 'relative' }}>
           <div className="panel-header" style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, padding: '12px 16px', background: 'var(--bg-panel)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: '10px', color: 'var(--text-primary)', fontWeight: 'bold' }}>MAP LEVEL {activeFloor} TOPOLOGY</span>
             
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <button 
+                onClick={() => setIsMapExpanded(!isMapExpanded)}
+                style={{ 
+                  background: 'transparent', border: '1px solid var(--accent-blue)', color: 'var(--accent-blue)', 
+                  padding: '4px 8px', fontSize: '10px', borderRadius: '4px', cursor: 'pointer'
+                }}
+              >
+                {isMapExpanded ? '↙ COLLAPSE MAP' : '⤡ EXPAND MAP'}
+              </button>
               <button 
                  onClick={() => setShowWindSim(!showWindSim)}
                  style={{ 
@@ -489,6 +525,24 @@ function App() {
             nodesDraggable={false}
           >
             <Background gap={40} size={1} color="rgba(255,255,255,0.05)" />
+            
+            {/* SVG Defs for Airflow Vector Gradients */}
+            <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+              <defs>
+                <linearGradient id="flow-nominal" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#10b981" />
+                </linearGradient>
+                <linearGradient id="flow-fault" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#ef4444" />
+                </linearGradient>
+                <linearGradient id="flow-rem" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#eab308" />
+                </linearGradient>
+              </defs>
+            </svg>
           </ReactFlow>
         </div>
       </div>

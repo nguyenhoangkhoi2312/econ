@@ -28,6 +28,18 @@ func main() {
 		w.Write(data)
 	})
 
+	// 2. Serve Brick Ontology Data
+	http.HandleFunc("/api/ontology", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		data, err := os.ReadFile("./data/brick-ontology.json")
+		if err != nil {
+			http.Error(w, "Failed to read ontology data", http.StatusInternalServerError)
+			return
+		}
+		w.Write(data)
+	})
+
 	// Initialize simulation engine
 	engine := simulation.NewEngine()
 	go engine.Start()

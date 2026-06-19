@@ -42,17 +42,13 @@ def rect_intersect(r1, r2, inflate=25):
     
     return not (ix1 + iw1 < ix2 or ix2 + iw2 < ix1 or iy1 + ih1 < iy2 or iy2 + ih2 < iy1)
 
-def process_blueprint(image_path):
-    print(f"Loading floor plan: {image_path}")
-    img = cv2.imread(image_path)
-    if img is None:
-        print("Image not found. Exiting.")
-        return
-        
+def _run_digitize_pass(original_img, kernel_size, min_area, inflate):
+    img = original_img.copy()
+    
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY_INV)
     
-    kernel = np.ones((60, 60), np.uint8)
+    kernel = np.ones((kernel_size, kernel_size), np.uint8)
     closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
     
     inverted = cv2.bitwise_not(closing)
@@ -63,7 +59,7 @@ def process_blueprint(image_path):
     
     for cnt in contours:
         area = cv2.contourArea(cnt)
-        if area > 5000:
+        if area > min_area:
             x, y, w, h = cv2.boundingRect(cnt)
             if w > img.shape[1] * 0.8 or h > img.shape[0] * 0.8:
                 continue
@@ -93,8 +89,8 @@ def process_blueprint(image_path):
     edges_found = []
     for i in range(len(zones)):
         for j in range(i + 1, len(zones)):
-            # Inflate boundaries by 30px to find adjacent rooms (edges)
-            if rect_intersect(zones[i]["bbox"], zones[j]["bbox"], inflate=30):
+            # Inflate boundaries by parameter to find adjacent rooms (edges)
+            if rect_intersect(zones[i]["bbox"], zones[j]["bbox"], inflate=inflate):
                 G.add_edge(zones[i]["name"], zones[j]["name"])
                 edges_found.append((zones[i]["name"], zones[j]["name"]))
                 
@@ -129,17 +125,63 @@ def process_blueprint(image_path):
         cv2.putText(img, f"Integ: {integration_score}", (cx - 40, cy + 25), 
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
                     
-    output_img = "digitized_topologic_output.png"
-    cv2.imwrite(output_img, img)
-    print(f"Saved Dual Graph visualization to {output_img}")
+    # Calculate Score
+    num_zones = len(zones)
+    score = 0
+    if num_zones == 0:
+        score = -1000
+    elif num_zones > 80:
+        score = -500 # Too much noise, shattered
+    elif num_zones == 1:
+        score = -100 # Over-blurred into one giant blob
+    else:
+        total_area = sum(z["area"] for z in zones)
+        img_area = img.shape[0] * img.shape[1]
+        coverage = total_area / img_area
+        if coverage > 0.95:
+            score -= 200 # Found the entire page border
+        else:
+            score += num_zones * 10
+            score += int(coverage * 100)
+
+    return score, img, topology_data
+
+def auto_process_blueprint(image_path, progress_cb=None):
+    img = cv2.imread(image_path)
+    if img is None:
+        return None, None
+
+    kernels = [15, 25, 40, 60]
+    areas = [1000, 3000, 6000]
+    total_steps = len(kernels) * len(areas)
     
-    json_path = "topologic_graph.json"
-    with open(json_path, "w") as f:
-        json.dump(topology_data, f, indent=4)
-    print(f"Exported Topologic & Space Syntax Data to {json_path}")
+    best_score = -9999
+    best_img = None
+    best_data = None
+    best_params = {}
+    
+    step = 0
+    for k in kernels:
+        for a in areas:
+            step += 1
+            if progress_cb:
+                progress_cb(step, total_steps, f"Testing Kernel={k}, MinArea={a}...")
+                
+            score, img_res, data = _run_digitize_pass(img, k, a, 30)
+            if score > best_score:
+                best_score = score
+                best_img = img_res
+                best_data = data
+                best_params = {"kernel": k, "area": a}
+                
+    if progress_cb:
+        progress_cb(total_steps, total_steps, f"Auto-Selected Best Parameters: Kernel={best_params['kernel']}, Area={best_params['area']} (Score: {best_score})")
+        
+    return best_img, best_data
 
 if __name__ == "__main__":
     test_img = "real_floorplan.png"
     if not os.path.exists(test_img):
         generate_mock_floorplan(test_img)
-    process_blueprint(test_img)
+    auto_process_blueprint(test_img)
+
