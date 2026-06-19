@@ -1,0 +1,132 @@
+import React from 'react';
+import { Activity, Users, Thermometer, Zap, BarChart2 } from 'lucide-react';
+import { ResponsiveContainer, AreaChart, Area } from 'recharts';
+
+function Sparkline({ data, dataKey, color }) {
+  return (
+    <div style={{ width: '60px', height: '20px' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data}>
+          <Area type="monotone" dataKey={dataKey} stroke={color} fill={color} fillOpacity={0.2} strokeWidth={1.5} isAnimationActive={false} />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+function BulletGraph({ label, value, max, target, color, unit }) {
+  const numValue = typeof value === 'number' ? value : parseFloat(value) || 0;
+  const percent = Math.min(100, (numValue / max) * 100);
+  const targetPercent = Math.min(100, (target / max) * 100);
+  return (
+    <div style={{ marginBottom: '12px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: 'var(--text-secondary)', marginBottom: '4px' }}>
+        <span>{label}</span>
+        <span style={{ fontFamily: 'monospace', fontWeight: 'bold', color: 'var(--text-primary)' }}>{numValue.toFixed(1)} {unit}</span>
+      </div>
+      <div style={{ position: 'relative', height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden' }}>
+        {/* Safe Range Background */}
+        <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: '80%', background: 'rgba(255,255,255,0.02)' }} />
+        {/* Actual Value Bar */}
+        <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${percent}%`, background: color, transition: 'width 0.3s ease' }} />
+        {/* Target Marker */}
+        <div style={{ position: 'absolute', top: 0, left: `${targetPercent}%`, height: '100%', width: '2px', background: '#fff', zIndex: 10 }} />
+      </div>
+    </div>
+  );
+}
+
+function DeltaCard({ title, icon: Icon, value, unit, delta, isGood, historyData, dataKey, sparkColor }) {
+  return (
+    <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-glass)', borderRadius: '8px', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '10px', color: 'var(--text-secondary)' }}>
+          <Icon size={12} /> {title}
+        </div>
+        <Sparkline data={historyData} dataKey={dataKey} color={sparkColor} />
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
+        <div style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--text-primary)', fontFamily: 'monospace', lineHeight: 1 }}>
+          {value} <span style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>{unit}</span>
+        </div>
+        <div style={{ fontSize: '10px', fontWeight: 'bold', color: isGood ? 'var(--accent-green)' : 'var(--accent-red)', background: isGood ? 'rgba(0,255,0,0.1)' : 'rgba(255,0,0,0.1)', padding: '2px 4px', borderRadius: '4px' }}>
+          {delta > 0 ? '▲' : '▼'} {Math.abs(delta)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function GlobalMetricsPanel({ simData, globalMetrics, loadHistory, activeFloor, selectedNode }) {
+  
+  const bldgLoad = simData.buildingLoadMw ?? 0;
+  const sysHealth = simData.systemHealth ?? 100;
+  const occupants = simData.totalOccupants ?? 0;
+  
+  // Fake delta calculations for demonstration of the professional HMI look
+  const loadDelta = +(Math.random() * 0.05).toFixed(2);
+  const occDelta = Math.floor(Math.random() * 15);
+  
+  return (
+    <aside className="hud-dock-right" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '320px', padding: '1rem' }}>
+      <div style={{ paddingBottom: '0.5rem', borderBottom: '1px solid var(--border-glass)' }}>
+        <h2 style={{ fontSize: '14px', color: 'var(--text-primary)', margin: 0, letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <BarChart2 size={16} color="var(--accent-blue)" />
+          {selectedNode ? 'NODE DIAGNOSTICS' : 'ENTERPRISE OVERVIEW'}
+        </h2>
+        <span className="mono" style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>{selectedNode?.id || 'GLOBAL METRICS'}</span>
+      </div>
+
+      {!selectedNode ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* Delta Cards */}
+          <DeltaCard 
+            title="TOTAL LOAD" icon={Zap} value={bldgLoad.toFixed(2)} unit="MW" 
+            delta={loadDelta} isGood={false} historyData={loadHistory} dataKey="pwr" sparkColor="var(--accent-yellow)" 
+          />
+          <DeltaCard 
+            title="OCCUPANCY" icon={Users} value={occupants} unit="Pax" 
+            delta={occDelta} isGood={true} historyData={loadHistory} dataKey="co2" sparkColor="var(--accent-blue)" 
+          />
+
+          {/* Bullet Graphs */}
+          <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-glass)', borderRadius: '8px', padding: '16px 12px 4px 12px' }}>
+            <BulletGraph label="System Health" value={sysHealth} max={100} target={95} color={sysHealth < 80 ? 'var(--accent-red)' : 'var(--accent-green)'} unit="%" />
+            <BulletGraph label="Avg Temperature" value={globalMetrics.avgTemp || 24} max={35} target={23.5} color="var(--accent-blue)" unit="°C" />
+            <BulletGraph label="Active Cooling Capacity" value={72} max={100} target={60} color="var(--accent-yellow)" unit="%" />
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: sysHealth < 80 ? 'rgba(255,0,0,0.1)' : 'rgba(0,0,0,0.2)', border: sysHealth < 80 ? '1px solid rgba(255,0,0,0.3)' : '1px solid var(--border-glass)', borderRadius: '8px', alignItems: 'center', transition: '0.3s' }}>
+            <div style={{ fontSize: '11px', color: sysHealth < 80 ? 'var(--accent-red)' : 'var(--text-secondary)', fontWeight: 'bold' }}>ACTIVE CRITICAL FAULTS</div>
+            <div style={{ fontSize: '16px', fontWeight: 'bold', color: sysHealth < 80 ? 'var(--accent-red)' : 'var(--accent-green)' }}>
+               {sysHealth < 80 ? '1' : '0'}
+            </div>
+          </div>
+
+          {/* Static Info */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', padding: '8px 12px', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid var(--border-glass)' }}>
+             <span style={{ color: 'var(--text-secondary)' }}>Selected Level:</span>
+             <span style={{ color: 'var(--accent-blue)', fontWeight: 'bold' }}>L{activeFloor}</span>
+          </div>
+        </div>
+      ) : selectedNode?.type === 'zone' ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border-glass)' }}>
+            <span style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>STATUS</span>
+            <span style={{ fontSize: '10px', fontWeight: 'bold', padding: '4px 8px', borderRadius: '4px', background: selectedNode.data.alert === true ? 'rgba(255,0,0,0.1)' : 'rgba(0,255,0,0.1)', color: selectedNode.data.alert === true ? 'var(--accent-red)' : 'var(--accent-green)' }}>
+              {selectedNode.data.alert === true ? 'ALARM' : 'NOMINAL'}
+            </span>
+          </div>
+
+          <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-glass)', borderRadius: '8px', padding: '16px 12px 4px 12px' }}>
+            <BulletGraph label="Local Temp" value={parseFloat(selectedNode.data.temp)} max={35} target={24} color={selectedNode.data.alert ? 'var(--accent-red)' : 'var(--accent-yellow)'} unit="°C" />
+            <BulletGraph label="Occupancy" value={selectedNode.data.occupancy} max={80} target={20} color="var(--accent-blue)" unit="Pax" />
+            <BulletGraph label="Integration Score" value={selectedNode.data.integration_score ?? 0} max={2} target={0.5} color="var(--accent-green)" unit="Idx" />
+          </div>
+        </div>
+      ) : (
+        <p style={{ fontSize: '11px', color: 'var(--text-secondary)', textAlign: 'center', marginTop: '2rem' }}>Detailed micro-metrics are only available for Zone nodes.</p>
+      )}
+    </aside>
+  );
+}

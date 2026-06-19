@@ -22,6 +22,14 @@ ontology.nodes.push({
 
 // Parse all floors
 buildingData.floors.forEach(floor => {
+  // Floor Electrical Panel
+  const panelId = `panel-lvl${floor.level}`;
+  ontology.nodes.push({
+    id: panelId,
+    type: "brick:Electrical_Panel",
+    label: `Electrical Panel L${floor.level}`
+  });
+
   // Add Zones and their VAVs
   floor.zones.forEach(zone => {
     ontology.nodes.push({
@@ -43,6 +51,42 @@ buildingData.floors.forEach(floor => {
       source: zone.zoneId,
       predicate: "brick:hasPoint",
       target: sensorId
+    });
+
+    // Camera
+    const cameraId = `camera_${zone.zoneId}`;
+    ontology.nodes.push({
+      id: cameraId,
+      type: "brick:Camera"
+    });
+
+    // Relationship: Zone has a Camera
+    ontology.relationships.push({
+      source: zone.zoneId,
+      predicate: "brick:hasPoint",
+      target: cameraId
+    });
+
+    // Electrical Circuit
+    const circuitId = `circuit_${zone.zoneId}`;
+    ontology.nodes.push({
+      id: circuitId,
+      type: "brick:Electrical_Circuit",
+      label: `Circuit ${zone.zoneId}`
+    });
+
+    // Relationship: Panel feeds Circuit
+    ontology.relationships.push({
+      source: panelId,
+      predicate: "brick:feeds",
+      target: circuitId
+    });
+
+    // Relationship: Circuit feeds Zone
+    ontology.relationships.push({
+      source: circuitId,
+      predicate: "brick:feeds",
+      target: zone.zoneId
     });
 
     // Add VAV mapping if exists

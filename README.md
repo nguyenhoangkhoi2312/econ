@@ -28,6 +28,12 @@ During **Sprint 1 (Core Architecture & Simulation)**, we built a robust and high
    - The "Critical Fault" triggers a 5x thermal runaway in the server room by dynamically throttling VAV airflow.
    - The "AI Auto-Pilot" detects the thermal anomaly and issues a SCADA override script to aggressively route cooling to the core, successfully stabilizing the building.
 
+6. **Advanced Telemetry Analytics & AI Insights**
+   - Built a sleek Left Dock Navigation supporting toggleable tabs for **AI Insights** and **Telemetry Logs**.
+   - **Dynamic Root Cause Analysis (RCA):** AI Insights accurately diagnoses the fault target, predicting the blast radius and cause (e.g., "CRAC unit compressor failure" for server rooms, "VAV damper stuck" for offices).
+   - **Thermodynamic Characteristic Chart:** A real-time auto-scaling Recharts scatter plot showing CO₂ vs Power. The live telemetry dots dynamically follow the ideal thermodynamic slope under normal conditions, but violently break away from the baseline during injected faults to visibly demonstrate anomalies.
+   - **Live Terminal Logging:** The Telemetry Logs tab renders a hacker-style real-time terminal of up to 30 active zones, showcasing live temperatures, loads, and occupancy streaming directly from the WASM engine.
+
 ## 🚧 Unimplemented Features Report
 
 While our recent sprints successfully proved the core architecture, 3D visualizations, and interactive IoT drill-downs, several critical features remain unimplemented before the platform is ready for production.

@@ -10,6 +10,11 @@
       "label": "Main Rooftop AHU"
     },
     {
+      "id": "panel-lvl1",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L1"
+    },
+    {
       "id": "zone-core-lvl1",
       "type": "brick:HVAC_Zone",
       "label": "Core Elevator Lobby Level 1",
@@ -18,6 +23,15 @@
     {
       "id": "sensor_temp_zone-core-lvl1",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl1"
     },
     {
       "id": "vav-core-lvl1",
@@ -35,6 +49,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl1"
+    },
+    {
       "id": "vav-north-lvl1",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl1"
@@ -48,6 +71,15 @@
     {
       "id": "sensor_temp_zone-south-lvl1",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl1"
     },
     {
       "id": "vav-south-lvl1",
@@ -65,6 +97,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl1"
+    },
+    {
       "id": "vav-east-lvl1",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl1"
@@ -78,6 +119,15 @@
     {
       "id": "sensor_temp_zone-west-lvl1",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl1"
     },
     {
       "id": "vav-west-lvl1",
@@ -95,6 +145,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl1"
+    },
+    {
       "id": "vav-open-a-lvl1",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl1"
@@ -108,6 +167,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl1",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl1"
     },
     {
       "id": "vav-open-b-lvl1",
@@ -125,6 +193,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl1"
+    },
+    {
       "id": "vav-open-west-lvl1",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl1"
@@ -140,9 +217,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl1",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl1",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl1"
+    },
+    {
       "id": "vav-open-east-lvl1",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl1"
+    },
+    {
+      "id": "panel-lvl2",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L2"
     },
     {
       "id": "zone-core-lvl2",
@@ -153,6 +244,15 @@
     {
       "id": "sensor_temp_zone-core-lvl2",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl2"
     },
     {
       "id": "vav-core-lvl2",
@@ -170,6 +270,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl2"
+    },
+    {
       "id": "vav-north-lvl2",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl2"
@@ -183,6 +292,15 @@
     {
       "id": "sensor_temp_zone-south-lvl2",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl2"
     },
     {
       "id": "vav-south-lvl2",
@@ -200,6 +318,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl2"
+    },
+    {
       "id": "vav-east-lvl2",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl2"
@@ -213,6 +340,15 @@
     {
       "id": "sensor_temp_zone-west-lvl2",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl2"
     },
     {
       "id": "vav-west-lvl2",
@@ -230,6 +366,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl2"
+    },
+    {
       "id": "vav-open-a-lvl2",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl2"
@@ -243,6 +388,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl2",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl2"
     },
     {
       "id": "vav-open-b-lvl2",
@@ -260,6 +414,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl2"
+    },
+    {
       "id": "vav-open-west-lvl2",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl2"
@@ -275,9 +438,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl2",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl2",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl2"
+    },
+    {
       "id": "vav-open-east-lvl2",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl2"
+    },
+    {
+      "id": "panel-lvl3",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L3"
     },
     {
       "id": "zone-core-lvl3",
@@ -288,6 +465,15 @@
     {
       "id": "sensor_temp_zone-core-lvl3",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl3"
     },
     {
       "id": "vav-core-lvl3",
@@ -305,6 +491,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl3"
+    },
+    {
       "id": "vav-north-lvl3",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl3"
@@ -318,6 +513,15 @@
     {
       "id": "sensor_temp_zone-south-lvl3",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl3"
     },
     {
       "id": "vav-south-lvl3",
@@ -335,6 +539,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl3"
+    },
+    {
       "id": "vav-east-lvl3",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl3"
@@ -348,6 +561,15 @@
     {
       "id": "sensor_temp_zone-west-lvl3",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl3"
     },
     {
       "id": "vav-west-lvl3",
@@ -365,6 +587,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl3"
+    },
+    {
       "id": "vav-open-a-lvl3",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl3"
@@ -378,6 +609,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl3",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl3"
     },
     {
       "id": "vav-open-b-lvl3",
@@ -395,6 +635,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl3"
+    },
+    {
       "id": "vav-open-west-lvl3",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl3"
@@ -410,9 +659,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl3",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl3",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl3"
+    },
+    {
       "id": "vav-open-east-lvl3",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl3"
+    },
+    {
+      "id": "panel-lvl4",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L4"
     },
     {
       "id": "zone-core-lvl4",
@@ -423,6 +686,15 @@
     {
       "id": "sensor_temp_zone-core-lvl4",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl4"
     },
     {
       "id": "vav-core-lvl4",
@@ -440,6 +712,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl4"
+    },
+    {
       "id": "vav-north-lvl4",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl4"
@@ -453,6 +734,15 @@
     {
       "id": "sensor_temp_zone-south-lvl4",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl4"
     },
     {
       "id": "vav-south-lvl4",
@@ -470,6 +760,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl4"
+    },
+    {
       "id": "vav-east-lvl4",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl4"
@@ -483,6 +782,15 @@
     {
       "id": "sensor_temp_zone-west-lvl4",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl4"
     },
     {
       "id": "vav-west-lvl4",
@@ -500,6 +808,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl4"
+    },
+    {
       "id": "vav-open-a-lvl4",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl4"
@@ -513,6 +830,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl4",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl4"
     },
     {
       "id": "vav-open-b-lvl4",
@@ -530,6 +856,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-server-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-server-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-server-lvl4"
+    },
+    {
       "id": "vav-server-lvl4",
       "type": "brick:VAV",
       "label": "VAV Box vav-server-lvl4"
@@ -545,9 +880,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-conf-lvl4",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-conf-lvl4",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-conf-lvl4"
+    },
+    {
       "id": "vav-conf-lvl4",
       "type": "brick:VAV",
       "label": "VAV Box vav-conf-lvl4"
+    },
+    {
+      "id": "panel-lvl5",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L5"
     },
     {
       "id": "zone-core-lvl5",
@@ -558,6 +907,15 @@
     {
       "id": "sensor_temp_zone-core-lvl5",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl5"
     },
     {
       "id": "vav-core-lvl5",
@@ -575,6 +933,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl5"
+    },
+    {
       "id": "vav-north-lvl5",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl5"
@@ -588,6 +955,15 @@
     {
       "id": "sensor_temp_zone-south-lvl5",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl5"
     },
     {
       "id": "vav-south-lvl5",
@@ -605,6 +981,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl5"
+    },
+    {
       "id": "vav-east-lvl5",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl5"
@@ -618,6 +1003,15 @@
     {
       "id": "sensor_temp_zone-west-lvl5",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl5"
     },
     {
       "id": "vav-west-lvl5",
@@ -635,6 +1029,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl5"
+    },
+    {
       "id": "vav-open-a-lvl5",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl5"
@@ -648,6 +1051,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl5",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl5"
     },
     {
       "id": "vav-open-b-lvl5",
@@ -665,6 +1077,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl5"
+    },
+    {
       "id": "vav-open-west-lvl5",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl5"
@@ -680,9 +1101,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl5",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl5",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl5"
+    },
+    {
       "id": "vav-open-east-lvl5",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl5"
+    },
+    {
+      "id": "panel-lvl6",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L6"
     },
     {
       "id": "zone-core-lvl6",
@@ -693,6 +1128,15 @@
     {
       "id": "sensor_temp_zone-core-lvl6",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl6"
     },
     {
       "id": "vav-core-lvl6",
@@ -710,6 +1154,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl6"
+    },
+    {
       "id": "vav-north-lvl6",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl6"
@@ -723,6 +1176,15 @@
     {
       "id": "sensor_temp_zone-south-lvl6",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl6"
     },
     {
       "id": "vav-south-lvl6",
@@ -740,6 +1202,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl6"
+    },
+    {
       "id": "vav-east-lvl6",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl6"
@@ -753,6 +1224,15 @@
     {
       "id": "sensor_temp_zone-west-lvl6",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl6"
     },
     {
       "id": "vav-west-lvl6",
@@ -770,6 +1250,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl6"
+    },
+    {
       "id": "vav-open-a-lvl6",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl6"
@@ -783,6 +1272,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl6",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl6"
     },
     {
       "id": "vav-open-b-lvl6",
@@ -800,6 +1298,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl6"
+    },
+    {
       "id": "vav-open-west-lvl6",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl6"
@@ -815,9 +1322,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl6",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl6",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl6"
+    },
+    {
       "id": "vav-open-east-lvl6",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl6"
+    },
+    {
+      "id": "panel-lvl7",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L7"
     },
     {
       "id": "zone-core-lvl7",
@@ -828,6 +1349,15 @@
     {
       "id": "sensor_temp_zone-core-lvl7",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl7"
     },
     {
       "id": "vav-core-lvl7",
@@ -845,6 +1375,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl7"
+    },
+    {
       "id": "vav-north-lvl7",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl7"
@@ -858,6 +1397,15 @@
     {
       "id": "sensor_temp_zone-south-lvl7",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl7"
     },
     {
       "id": "vav-south-lvl7",
@@ -875,6 +1423,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl7"
+    },
+    {
       "id": "vav-east-lvl7",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl7"
@@ -888,6 +1445,15 @@
     {
       "id": "sensor_temp_zone-west-lvl7",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl7"
     },
     {
       "id": "vav-west-lvl7",
@@ -905,6 +1471,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl7"
+    },
+    {
       "id": "vav-open-a-lvl7",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl7"
@@ -918,6 +1493,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl7",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl7"
     },
     {
       "id": "vav-open-b-lvl7",
@@ -935,6 +1519,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl7"
+    },
+    {
       "id": "vav-open-west-lvl7",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl7"
@@ -950,9 +1543,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl7",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl7",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl7"
+    },
+    {
       "id": "vav-open-east-lvl7",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl7"
+    },
+    {
+      "id": "panel-lvl8",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L8"
     },
     {
       "id": "zone-core-lvl8",
@@ -963,6 +1570,15 @@
     {
       "id": "sensor_temp_zone-core-lvl8",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl8"
     },
     {
       "id": "vav-core-lvl8",
@@ -980,6 +1596,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl8"
+    },
+    {
       "id": "vav-north-lvl8",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl8"
@@ -993,6 +1618,15 @@
     {
       "id": "sensor_temp_zone-south-lvl8",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl8"
     },
     {
       "id": "vav-south-lvl8",
@@ -1010,6 +1644,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl8"
+    },
+    {
       "id": "vav-east-lvl8",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl8"
@@ -1023,6 +1666,15 @@
     {
       "id": "sensor_temp_zone-west-lvl8",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl8"
     },
     {
       "id": "vav-west-lvl8",
@@ -1040,6 +1692,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl8"
+    },
+    {
       "id": "vav-open-a-lvl8",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl8"
@@ -1053,6 +1714,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl8",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl8"
     },
     {
       "id": "vav-open-b-lvl8",
@@ -1070,6 +1740,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-server-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-server-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-server-lvl8"
+    },
+    {
       "id": "vav-server-lvl8",
       "type": "brick:VAV",
       "label": "VAV Box vav-server-lvl8"
@@ -1085,9 +1764,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-conf-lvl8",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-conf-lvl8",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-conf-lvl8"
+    },
+    {
       "id": "vav-conf-lvl8",
       "type": "brick:VAV",
       "label": "VAV Box vav-conf-lvl8"
+    },
+    {
+      "id": "panel-lvl9",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L9"
     },
     {
       "id": "zone-core-lvl9",
@@ -1098,6 +1791,15 @@
     {
       "id": "sensor_temp_zone-core-lvl9",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl9"
     },
     {
       "id": "vav-core-lvl9",
@@ -1115,6 +1817,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl9"
+    },
+    {
       "id": "vav-north-lvl9",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl9"
@@ -1128,6 +1839,15 @@
     {
       "id": "sensor_temp_zone-south-lvl9",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl9"
     },
     {
       "id": "vav-south-lvl9",
@@ -1145,6 +1865,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl9"
+    },
+    {
       "id": "vav-east-lvl9",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl9"
@@ -1158,6 +1887,15 @@
     {
       "id": "sensor_temp_zone-west-lvl9",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl9"
     },
     {
       "id": "vav-west-lvl9",
@@ -1175,6 +1913,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl9"
+    },
+    {
       "id": "vav-open-a-lvl9",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl9"
@@ -1188,6 +1935,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl9",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl9"
     },
     {
       "id": "vav-open-b-lvl9",
@@ -1205,6 +1961,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl9"
+    },
+    {
       "id": "vav-open-west-lvl9",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl9"
@@ -1220,9 +1985,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl9",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl9",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl9"
+    },
+    {
       "id": "vav-open-east-lvl9",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl9"
+    },
+    {
+      "id": "panel-lvl10",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L10"
     },
     {
       "id": "zone-core-lvl10",
@@ -1233,6 +2012,15 @@
     {
       "id": "sensor_temp_zone-core-lvl10",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl10"
     },
     {
       "id": "vav-core-lvl10",
@@ -1250,6 +2038,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl10"
+    },
+    {
       "id": "vav-north-lvl10",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl10"
@@ -1263,6 +2060,15 @@
     {
       "id": "sensor_temp_zone-south-lvl10",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl10"
     },
     {
       "id": "vav-south-lvl10",
@@ -1280,6 +2086,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl10"
+    },
+    {
       "id": "vav-east-lvl10",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl10"
@@ -1293,6 +2108,15 @@
     {
       "id": "sensor_temp_zone-west-lvl10",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl10"
     },
     {
       "id": "vav-west-lvl10",
@@ -1310,6 +2134,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl10"
+    },
+    {
       "id": "vav-open-a-lvl10",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl10"
@@ -1323,6 +2156,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl10",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl10"
     },
     {
       "id": "vav-open-b-lvl10",
@@ -1340,6 +2182,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl10"
+    },
+    {
       "id": "vav-open-west-lvl10",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl10"
@@ -1355,9 +2206,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl10",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl10",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl10"
+    },
+    {
       "id": "vav-open-east-lvl10",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl10"
+    },
+    {
+      "id": "panel-lvl11",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L11"
     },
     {
       "id": "zone-core-lvl11",
@@ -1368,6 +2233,15 @@
     {
       "id": "sensor_temp_zone-core-lvl11",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl11"
     },
     {
       "id": "vav-core-lvl11",
@@ -1385,6 +2259,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl11"
+    },
+    {
       "id": "vav-north-lvl11",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl11"
@@ -1398,6 +2281,15 @@
     {
       "id": "sensor_temp_zone-south-lvl11",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl11"
     },
     {
       "id": "vav-south-lvl11",
@@ -1415,6 +2307,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl11"
+    },
+    {
       "id": "vav-east-lvl11",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl11"
@@ -1428,6 +2329,15 @@
     {
       "id": "sensor_temp_zone-west-lvl11",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl11"
     },
     {
       "id": "vav-west-lvl11",
@@ -1445,6 +2355,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl11"
+    },
+    {
       "id": "vav-open-a-lvl11",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl11"
@@ -1458,6 +2377,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl11",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl11"
     },
     {
       "id": "vav-open-b-lvl11",
@@ -1475,6 +2403,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl11"
+    },
+    {
       "id": "vav-open-west-lvl11",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl11"
@@ -1490,9 +2427,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl11",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl11",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl11"
+    },
+    {
       "id": "vav-open-east-lvl11",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl11"
+    },
+    {
+      "id": "panel-lvl12",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L12"
     },
     {
       "id": "zone-core-lvl12",
@@ -1503,6 +2454,15 @@
     {
       "id": "sensor_temp_zone-core-lvl12",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl12"
     },
     {
       "id": "vav-core-lvl12",
@@ -1520,6 +2480,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl12"
+    },
+    {
       "id": "vav-north-lvl12",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl12"
@@ -1533,6 +2502,15 @@
     {
       "id": "sensor_temp_zone-south-lvl12",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl12"
     },
     {
       "id": "vav-south-lvl12",
@@ -1550,6 +2528,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl12"
+    },
+    {
       "id": "vav-east-lvl12",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl12"
@@ -1563,6 +2550,15 @@
     {
       "id": "sensor_temp_zone-west-lvl12",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl12"
     },
     {
       "id": "vav-west-lvl12",
@@ -1580,6 +2576,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl12"
+    },
+    {
       "id": "vav-open-a-lvl12",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl12"
@@ -1593,6 +2598,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl12",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl12"
     },
     {
       "id": "vav-open-b-lvl12",
@@ -1610,6 +2624,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-server-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-server-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-server-lvl12"
+    },
+    {
       "id": "vav-server-lvl12",
       "type": "brick:VAV",
       "label": "VAV Box vav-server-lvl12"
@@ -1625,9 +2648,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-conf-lvl12",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-conf-lvl12",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-conf-lvl12"
+    },
+    {
       "id": "vav-conf-lvl12",
       "type": "brick:VAV",
       "label": "VAV Box vav-conf-lvl12"
+    },
+    {
+      "id": "panel-lvl13",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L13"
     },
     {
       "id": "zone-core-lvl13",
@@ -1638,6 +2675,15 @@
     {
       "id": "sensor_temp_zone-core-lvl13",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl13"
     },
     {
       "id": "vav-core-lvl13",
@@ -1655,6 +2701,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl13"
+    },
+    {
       "id": "vav-north-lvl13",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl13"
@@ -1668,6 +2723,15 @@
     {
       "id": "sensor_temp_zone-south-lvl13",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl13"
     },
     {
       "id": "vav-south-lvl13",
@@ -1685,6 +2749,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl13"
+    },
+    {
       "id": "vav-east-lvl13",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl13"
@@ -1698,6 +2771,15 @@
     {
       "id": "sensor_temp_zone-west-lvl13",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl13"
     },
     {
       "id": "vav-west-lvl13",
@@ -1715,6 +2797,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl13"
+    },
+    {
       "id": "vav-open-a-lvl13",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl13"
@@ -1728,6 +2819,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl13",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl13"
     },
     {
       "id": "vav-open-b-lvl13",
@@ -1745,6 +2845,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl13"
+    },
+    {
       "id": "vav-open-west-lvl13",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl13"
@@ -1760,9 +2869,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl13",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl13",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl13"
+    },
+    {
       "id": "vav-open-east-lvl13",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl13"
+    },
+    {
+      "id": "panel-lvl14",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L14"
     },
     {
       "id": "zone-core-lvl14",
@@ -1773,6 +2896,15 @@
     {
       "id": "sensor_temp_zone-core-lvl14",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl14"
     },
     {
       "id": "vav-core-lvl14",
@@ -1790,6 +2922,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl14"
+    },
+    {
       "id": "vav-north-lvl14",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl14"
@@ -1803,6 +2944,15 @@
     {
       "id": "sensor_temp_zone-south-lvl14",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl14"
     },
     {
       "id": "vav-south-lvl14",
@@ -1820,6 +2970,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl14"
+    },
+    {
       "id": "vav-east-lvl14",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl14"
@@ -1833,6 +2992,15 @@
     {
       "id": "sensor_temp_zone-west-lvl14",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl14"
     },
     {
       "id": "vav-west-lvl14",
@@ -1850,6 +3018,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl14"
+    },
+    {
       "id": "vav-open-a-lvl14",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl14"
@@ -1863,6 +3040,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl14",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl14"
     },
     {
       "id": "vav-open-b-lvl14",
@@ -1880,6 +3066,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl14"
+    },
+    {
       "id": "vav-open-west-lvl14",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl14"
@@ -1895,9 +3090,23 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl14",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl14",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl14"
+    },
+    {
       "id": "vav-open-east-lvl14",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl14"
+    },
+    {
+      "id": "panel-lvl15",
+      "type": "brick:Electrical_Panel",
+      "label": "Electrical Panel L15"
     },
     {
       "id": "zone-core-lvl15",
@@ -1908,6 +3117,15 @@
     {
       "id": "sensor_temp_zone-core-lvl15",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-core-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-core-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-core-lvl15"
     },
     {
       "id": "vav-core-lvl15",
@@ -1925,6 +3143,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-north-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-north-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-north-lvl15"
+    },
+    {
       "id": "vav-north-lvl15",
       "type": "brick:VAV",
       "label": "VAV Box vav-north-lvl15"
@@ -1938,6 +3165,15 @@
     {
       "id": "sensor_temp_zone-south-lvl15",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-south-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-south-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-south-lvl15"
     },
     {
       "id": "vav-south-lvl15",
@@ -1955,6 +3191,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-east-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-east-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-east-lvl15"
+    },
+    {
       "id": "vav-east-lvl15",
       "type": "brick:VAV",
       "label": "VAV Box vav-east-lvl15"
@@ -1968,6 +3213,15 @@
     {
       "id": "sensor_temp_zone-west-lvl15",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-west-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-west-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-west-lvl15"
     },
     {
       "id": "vav-west-lvl15",
@@ -1985,6 +3239,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-a-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-a-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-a-lvl15"
+    },
+    {
       "id": "vav-open-a-lvl15",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-a-lvl15"
@@ -1998,6 +3261,15 @@
     {
       "id": "sensor_temp_zone-open-b-lvl15",
       "type": "brick:Temperature_Sensor"
+    },
+    {
+      "id": "camera_zone-open-b-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-b-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-b-lvl15"
     },
     {
       "id": "vav-open-b-lvl15",
@@ -2015,6 +3287,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-west-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-west-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-west-lvl15"
+    },
+    {
       "id": "vav-open-west-lvl15",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-west-lvl15"
@@ -2030,6 +3311,15 @@
       "type": "brick:Temperature_Sensor"
     },
     {
+      "id": "camera_zone-open-east-lvl15",
+      "type": "brick:Camera"
+    },
+    {
+      "id": "circuit_zone-open-east-lvl15",
+      "type": "brick:Electrical_Circuit",
+      "label": "Circuit zone-open-east-lvl15"
+    },
+    {
       "id": "vav-open-east-lvl15",
       "type": "brick:VAV",
       "label": "VAV Box vav-open-east-lvl15"
@@ -2040,6 +3330,21 @@
       "source": "zone-core-lvl1",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl1"
+    },
+    {
+      "source": "zone-core-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl1"
+    },
+    {
+      "source": "circuit_zone-core-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl1"
     },
     {
       "source": "ahu-main",
@@ -2057,6 +3362,21 @@
       "target": "sensor_temp_zone-north-lvl1"
     },
     {
+      "source": "zone-north-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl1"
+    },
+    {
+      "source": "circuit_zone-north-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl1"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl1"
@@ -2070,6 +3390,21 @@
       "source": "zone-south-lvl1",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl1"
+    },
+    {
+      "source": "zone-south-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl1"
+    },
+    {
+      "source": "circuit_zone-south-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl1"
     },
     {
       "source": "ahu-main",
@@ -2087,6 +3422,21 @@
       "target": "sensor_temp_zone-east-lvl1"
     },
     {
+      "source": "zone-east-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl1"
+    },
+    {
+      "source": "circuit_zone-east-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl1"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl1"
@@ -2100,6 +3450,21 @@
       "source": "zone-west-lvl1",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl1"
+    },
+    {
+      "source": "zone-west-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl1"
+    },
+    {
+      "source": "circuit_zone-west-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl1"
     },
     {
       "source": "ahu-main",
@@ -2117,6 +3482,21 @@
       "target": "sensor_temp_zone-open-a-lvl1"
     },
     {
+      "source": "zone-open-a-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl1"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl1"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl1"
@@ -2130,6 +3510,21 @@
       "source": "zone-open-b-lvl1",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl1"
+    },
+    {
+      "source": "zone-open-b-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl1"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl1"
     },
     {
       "source": "ahu-main",
@@ -2147,6 +3542,21 @@
       "target": "sensor_temp_zone-open-west-lvl1"
     },
     {
+      "source": "zone-open-west-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl1"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl1"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl1"
@@ -2160,6 +3570,21 @@
       "source": "zone-open-east-lvl1",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl1"
+    },
+    {
+      "source": "zone-open-east-lvl1",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl1"
+    },
+    {
+      "source": "panel-lvl1",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl1"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl1",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl1"
     },
     {
       "source": "ahu-main",
@@ -2177,6 +3602,21 @@
       "target": "sensor_temp_zone-core-lvl2"
     },
     {
+      "source": "zone-core-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl2"
+    },
+    {
+      "source": "circuit_zone-core-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl2"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl2"
@@ -2190,6 +3630,21 @@
       "source": "zone-north-lvl2",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl2"
+    },
+    {
+      "source": "zone-north-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl2"
+    },
+    {
+      "source": "circuit_zone-north-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl2"
     },
     {
       "source": "ahu-main",
@@ -2207,6 +3662,21 @@
       "target": "sensor_temp_zone-south-lvl2"
     },
     {
+      "source": "zone-south-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl2"
+    },
+    {
+      "source": "circuit_zone-south-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl2"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl2"
@@ -2220,6 +3690,21 @@
       "source": "zone-east-lvl2",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl2"
+    },
+    {
+      "source": "zone-east-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl2"
+    },
+    {
+      "source": "circuit_zone-east-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl2"
     },
     {
       "source": "ahu-main",
@@ -2237,6 +3722,21 @@
       "target": "sensor_temp_zone-west-lvl2"
     },
     {
+      "source": "zone-west-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl2"
+    },
+    {
+      "source": "circuit_zone-west-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl2"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl2"
@@ -2250,6 +3750,21 @@
       "source": "zone-open-a-lvl2",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl2"
+    },
+    {
+      "source": "zone-open-a-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl2"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl2"
     },
     {
       "source": "ahu-main",
@@ -2267,6 +3782,21 @@
       "target": "sensor_temp_zone-open-b-lvl2"
     },
     {
+      "source": "zone-open-b-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl2"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl2"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl2"
@@ -2280,6 +3810,21 @@
       "source": "zone-open-west-lvl2",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-west-lvl2"
+    },
+    {
+      "source": "zone-open-west-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl2"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl2"
     },
     {
       "source": "ahu-main",
@@ -2297,6 +3842,21 @@
       "target": "sensor_temp_zone-open-east-lvl2"
     },
     {
+      "source": "zone-open-east-lvl2",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl2"
+    },
+    {
+      "source": "panel-lvl2",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl2"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl2",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl2"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-east-lvl2"
@@ -2310,6 +3870,21 @@
       "source": "zone-core-lvl3",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl3"
+    },
+    {
+      "source": "zone-core-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl3"
+    },
+    {
+      "source": "circuit_zone-core-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl3"
     },
     {
       "source": "ahu-main",
@@ -2327,6 +3902,21 @@
       "target": "sensor_temp_zone-north-lvl3"
     },
     {
+      "source": "zone-north-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl3"
+    },
+    {
+      "source": "circuit_zone-north-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl3"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl3"
@@ -2340,6 +3930,21 @@
       "source": "zone-south-lvl3",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl3"
+    },
+    {
+      "source": "zone-south-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl3"
+    },
+    {
+      "source": "circuit_zone-south-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl3"
     },
     {
       "source": "ahu-main",
@@ -2357,6 +3962,21 @@
       "target": "sensor_temp_zone-east-lvl3"
     },
     {
+      "source": "zone-east-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl3"
+    },
+    {
+      "source": "circuit_zone-east-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl3"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl3"
@@ -2370,6 +3990,21 @@
       "source": "zone-west-lvl3",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl3"
+    },
+    {
+      "source": "zone-west-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl3"
+    },
+    {
+      "source": "circuit_zone-west-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl3"
     },
     {
       "source": "ahu-main",
@@ -2387,6 +4022,21 @@
       "target": "sensor_temp_zone-open-a-lvl3"
     },
     {
+      "source": "zone-open-a-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl3"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl3"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl3"
@@ -2400,6 +4050,21 @@
       "source": "zone-open-b-lvl3",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl3"
+    },
+    {
+      "source": "zone-open-b-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl3"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl3"
     },
     {
       "source": "ahu-main",
@@ -2417,6 +4082,21 @@
       "target": "sensor_temp_zone-open-west-lvl3"
     },
     {
+      "source": "zone-open-west-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl3"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl3"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl3"
@@ -2430,6 +4110,21 @@
       "source": "zone-open-east-lvl3",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl3"
+    },
+    {
+      "source": "zone-open-east-lvl3",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl3"
+    },
+    {
+      "source": "panel-lvl3",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl3"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl3",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl3"
     },
     {
       "source": "ahu-main",
@@ -2447,6 +4142,21 @@
       "target": "sensor_temp_zone-core-lvl4"
     },
     {
+      "source": "zone-core-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl4"
+    },
+    {
+      "source": "circuit_zone-core-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl4"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl4"
@@ -2460,6 +4170,21 @@
       "source": "zone-north-lvl4",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl4"
+    },
+    {
+      "source": "zone-north-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl4"
+    },
+    {
+      "source": "circuit_zone-north-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl4"
     },
     {
       "source": "ahu-main",
@@ -2477,6 +4202,21 @@
       "target": "sensor_temp_zone-south-lvl4"
     },
     {
+      "source": "zone-south-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl4"
+    },
+    {
+      "source": "circuit_zone-south-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl4"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl4"
@@ -2490,6 +4230,21 @@
       "source": "zone-east-lvl4",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl4"
+    },
+    {
+      "source": "zone-east-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl4"
+    },
+    {
+      "source": "circuit_zone-east-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl4"
     },
     {
       "source": "ahu-main",
@@ -2507,6 +4262,21 @@
       "target": "sensor_temp_zone-west-lvl4"
     },
     {
+      "source": "zone-west-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl4"
+    },
+    {
+      "source": "circuit_zone-west-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl4"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl4"
@@ -2520,6 +4290,21 @@
       "source": "zone-open-a-lvl4",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl4"
+    },
+    {
+      "source": "zone-open-a-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl4"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl4"
     },
     {
       "source": "ahu-main",
@@ -2537,6 +4322,21 @@
       "target": "sensor_temp_zone-open-b-lvl4"
     },
     {
+      "source": "zone-open-b-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl4"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl4"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl4"
@@ -2550,6 +4350,21 @@
       "source": "zone-server-lvl4",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-server-lvl4"
+    },
+    {
+      "source": "zone-server-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-server-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-server-lvl4"
+    },
+    {
+      "source": "circuit_zone-server-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-server-lvl4"
     },
     {
       "source": "ahu-main",
@@ -2567,6 +4382,21 @@
       "target": "sensor_temp_zone-conf-lvl4"
     },
     {
+      "source": "zone-conf-lvl4",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-conf-lvl4"
+    },
+    {
+      "source": "panel-lvl4",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-conf-lvl4"
+    },
+    {
+      "source": "circuit_zone-conf-lvl4",
+      "predicate": "brick:feeds",
+      "target": "zone-conf-lvl4"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-conf-lvl4"
@@ -2580,6 +4410,21 @@
       "source": "zone-core-lvl5",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl5"
+    },
+    {
+      "source": "zone-core-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl5"
+    },
+    {
+      "source": "circuit_zone-core-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl5"
     },
     {
       "source": "ahu-main",
@@ -2597,6 +4442,21 @@
       "target": "sensor_temp_zone-north-lvl5"
     },
     {
+      "source": "zone-north-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl5"
+    },
+    {
+      "source": "circuit_zone-north-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl5"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl5"
@@ -2610,6 +4470,21 @@
       "source": "zone-south-lvl5",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl5"
+    },
+    {
+      "source": "zone-south-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl5"
+    },
+    {
+      "source": "circuit_zone-south-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl5"
     },
     {
       "source": "ahu-main",
@@ -2627,6 +4502,21 @@
       "target": "sensor_temp_zone-east-lvl5"
     },
     {
+      "source": "zone-east-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl5"
+    },
+    {
+      "source": "circuit_zone-east-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl5"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl5"
@@ -2640,6 +4530,21 @@
       "source": "zone-west-lvl5",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl5"
+    },
+    {
+      "source": "zone-west-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl5"
+    },
+    {
+      "source": "circuit_zone-west-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl5"
     },
     {
       "source": "ahu-main",
@@ -2657,6 +4562,21 @@
       "target": "sensor_temp_zone-open-a-lvl5"
     },
     {
+      "source": "zone-open-a-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl5"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl5"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl5"
@@ -2670,6 +4590,21 @@
       "source": "zone-open-b-lvl5",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl5"
+    },
+    {
+      "source": "zone-open-b-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl5"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl5"
     },
     {
       "source": "ahu-main",
@@ -2687,6 +4622,21 @@
       "target": "sensor_temp_zone-open-west-lvl5"
     },
     {
+      "source": "zone-open-west-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl5"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl5"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl5"
@@ -2700,6 +4650,21 @@
       "source": "zone-open-east-lvl5",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl5"
+    },
+    {
+      "source": "zone-open-east-lvl5",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl5"
+    },
+    {
+      "source": "panel-lvl5",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl5"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl5",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl5"
     },
     {
       "source": "ahu-main",
@@ -2717,6 +4682,21 @@
       "target": "sensor_temp_zone-core-lvl6"
     },
     {
+      "source": "zone-core-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl6"
+    },
+    {
+      "source": "circuit_zone-core-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl6"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl6"
@@ -2730,6 +4710,21 @@
       "source": "zone-north-lvl6",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl6"
+    },
+    {
+      "source": "zone-north-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl6"
+    },
+    {
+      "source": "circuit_zone-north-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl6"
     },
     {
       "source": "ahu-main",
@@ -2747,6 +4742,21 @@
       "target": "sensor_temp_zone-south-lvl6"
     },
     {
+      "source": "zone-south-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl6"
+    },
+    {
+      "source": "circuit_zone-south-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl6"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl6"
@@ -2760,6 +4770,21 @@
       "source": "zone-east-lvl6",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl6"
+    },
+    {
+      "source": "zone-east-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl6"
+    },
+    {
+      "source": "circuit_zone-east-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl6"
     },
     {
       "source": "ahu-main",
@@ -2777,6 +4802,21 @@
       "target": "sensor_temp_zone-west-lvl6"
     },
     {
+      "source": "zone-west-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl6"
+    },
+    {
+      "source": "circuit_zone-west-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl6"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl6"
@@ -2790,6 +4830,21 @@
       "source": "zone-open-a-lvl6",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl6"
+    },
+    {
+      "source": "zone-open-a-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl6"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl6"
     },
     {
       "source": "ahu-main",
@@ -2807,6 +4862,21 @@
       "target": "sensor_temp_zone-open-b-lvl6"
     },
     {
+      "source": "zone-open-b-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl6"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl6"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl6"
@@ -2820,6 +4890,21 @@
       "source": "zone-open-west-lvl6",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-west-lvl6"
+    },
+    {
+      "source": "zone-open-west-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl6"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl6"
     },
     {
       "source": "ahu-main",
@@ -2837,6 +4922,21 @@
       "target": "sensor_temp_zone-open-east-lvl6"
     },
     {
+      "source": "zone-open-east-lvl6",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl6"
+    },
+    {
+      "source": "panel-lvl6",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl6"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl6",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl6"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-east-lvl6"
@@ -2850,6 +4950,21 @@
       "source": "zone-core-lvl7",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl7"
+    },
+    {
+      "source": "zone-core-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl7"
+    },
+    {
+      "source": "circuit_zone-core-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl7"
     },
     {
       "source": "ahu-main",
@@ -2867,6 +4982,21 @@
       "target": "sensor_temp_zone-north-lvl7"
     },
     {
+      "source": "zone-north-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl7"
+    },
+    {
+      "source": "circuit_zone-north-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl7"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl7"
@@ -2880,6 +5010,21 @@
       "source": "zone-south-lvl7",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl7"
+    },
+    {
+      "source": "zone-south-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl7"
+    },
+    {
+      "source": "circuit_zone-south-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl7"
     },
     {
       "source": "ahu-main",
@@ -2897,6 +5042,21 @@
       "target": "sensor_temp_zone-east-lvl7"
     },
     {
+      "source": "zone-east-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl7"
+    },
+    {
+      "source": "circuit_zone-east-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl7"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl7"
@@ -2910,6 +5070,21 @@
       "source": "zone-west-lvl7",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl7"
+    },
+    {
+      "source": "zone-west-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl7"
+    },
+    {
+      "source": "circuit_zone-west-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl7"
     },
     {
       "source": "ahu-main",
@@ -2927,6 +5102,21 @@
       "target": "sensor_temp_zone-open-a-lvl7"
     },
     {
+      "source": "zone-open-a-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl7"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl7"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl7"
@@ -2940,6 +5130,21 @@
       "source": "zone-open-b-lvl7",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl7"
+    },
+    {
+      "source": "zone-open-b-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl7"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl7"
     },
     {
       "source": "ahu-main",
@@ -2957,6 +5162,21 @@
       "target": "sensor_temp_zone-open-west-lvl7"
     },
     {
+      "source": "zone-open-west-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl7"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl7"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl7"
@@ -2970,6 +5190,21 @@
       "source": "zone-open-east-lvl7",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl7"
+    },
+    {
+      "source": "zone-open-east-lvl7",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl7"
+    },
+    {
+      "source": "panel-lvl7",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl7"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl7",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl7"
     },
     {
       "source": "ahu-main",
@@ -2987,6 +5222,21 @@
       "target": "sensor_temp_zone-core-lvl8"
     },
     {
+      "source": "zone-core-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl8"
+    },
+    {
+      "source": "circuit_zone-core-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl8"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl8"
@@ -3000,6 +5250,21 @@
       "source": "zone-north-lvl8",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl8"
+    },
+    {
+      "source": "zone-north-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl8"
+    },
+    {
+      "source": "circuit_zone-north-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl8"
     },
     {
       "source": "ahu-main",
@@ -3017,6 +5282,21 @@
       "target": "sensor_temp_zone-south-lvl8"
     },
     {
+      "source": "zone-south-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl8"
+    },
+    {
+      "source": "circuit_zone-south-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl8"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl8"
@@ -3030,6 +5310,21 @@
       "source": "zone-east-lvl8",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl8"
+    },
+    {
+      "source": "zone-east-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl8"
+    },
+    {
+      "source": "circuit_zone-east-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl8"
     },
     {
       "source": "ahu-main",
@@ -3047,6 +5342,21 @@
       "target": "sensor_temp_zone-west-lvl8"
     },
     {
+      "source": "zone-west-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl8"
+    },
+    {
+      "source": "circuit_zone-west-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl8"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl8"
@@ -3060,6 +5370,21 @@
       "source": "zone-open-a-lvl8",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl8"
+    },
+    {
+      "source": "zone-open-a-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl8"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl8"
     },
     {
       "source": "ahu-main",
@@ -3077,6 +5402,21 @@
       "target": "sensor_temp_zone-open-b-lvl8"
     },
     {
+      "source": "zone-open-b-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl8"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl8"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl8"
@@ -3090,6 +5430,21 @@
       "source": "zone-server-lvl8",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-server-lvl8"
+    },
+    {
+      "source": "zone-server-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-server-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-server-lvl8"
+    },
+    {
+      "source": "circuit_zone-server-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-server-lvl8"
     },
     {
       "source": "ahu-main",
@@ -3107,6 +5462,21 @@
       "target": "sensor_temp_zone-conf-lvl8"
     },
     {
+      "source": "zone-conf-lvl8",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-conf-lvl8"
+    },
+    {
+      "source": "panel-lvl8",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-conf-lvl8"
+    },
+    {
+      "source": "circuit_zone-conf-lvl8",
+      "predicate": "brick:feeds",
+      "target": "zone-conf-lvl8"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-conf-lvl8"
@@ -3120,6 +5490,21 @@
       "source": "zone-core-lvl9",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl9"
+    },
+    {
+      "source": "zone-core-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl9"
+    },
+    {
+      "source": "circuit_zone-core-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl9"
     },
     {
       "source": "ahu-main",
@@ -3137,6 +5522,21 @@
       "target": "sensor_temp_zone-north-lvl9"
     },
     {
+      "source": "zone-north-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl9"
+    },
+    {
+      "source": "circuit_zone-north-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl9"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl9"
@@ -3150,6 +5550,21 @@
       "source": "zone-south-lvl9",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl9"
+    },
+    {
+      "source": "zone-south-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl9"
+    },
+    {
+      "source": "circuit_zone-south-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl9"
     },
     {
       "source": "ahu-main",
@@ -3167,6 +5582,21 @@
       "target": "sensor_temp_zone-east-lvl9"
     },
     {
+      "source": "zone-east-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl9"
+    },
+    {
+      "source": "circuit_zone-east-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl9"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl9"
@@ -3180,6 +5610,21 @@
       "source": "zone-west-lvl9",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl9"
+    },
+    {
+      "source": "zone-west-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl9"
+    },
+    {
+      "source": "circuit_zone-west-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl9"
     },
     {
       "source": "ahu-main",
@@ -3197,6 +5642,21 @@
       "target": "sensor_temp_zone-open-a-lvl9"
     },
     {
+      "source": "zone-open-a-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl9"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl9"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl9"
@@ -3210,6 +5670,21 @@
       "source": "zone-open-b-lvl9",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl9"
+    },
+    {
+      "source": "zone-open-b-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl9"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl9"
     },
     {
       "source": "ahu-main",
@@ -3227,6 +5702,21 @@
       "target": "sensor_temp_zone-open-west-lvl9"
     },
     {
+      "source": "zone-open-west-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl9"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl9"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl9"
@@ -3240,6 +5730,21 @@
       "source": "zone-open-east-lvl9",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl9"
+    },
+    {
+      "source": "zone-open-east-lvl9",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl9"
+    },
+    {
+      "source": "panel-lvl9",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl9"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl9",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl9"
     },
     {
       "source": "ahu-main",
@@ -3257,6 +5762,21 @@
       "target": "sensor_temp_zone-core-lvl10"
     },
     {
+      "source": "zone-core-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl10"
+    },
+    {
+      "source": "circuit_zone-core-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl10"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl10"
@@ -3270,6 +5790,21 @@
       "source": "zone-north-lvl10",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl10"
+    },
+    {
+      "source": "zone-north-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl10"
+    },
+    {
+      "source": "circuit_zone-north-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl10"
     },
     {
       "source": "ahu-main",
@@ -3287,6 +5822,21 @@
       "target": "sensor_temp_zone-south-lvl10"
     },
     {
+      "source": "zone-south-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl10"
+    },
+    {
+      "source": "circuit_zone-south-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl10"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl10"
@@ -3300,6 +5850,21 @@
       "source": "zone-east-lvl10",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl10"
+    },
+    {
+      "source": "zone-east-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl10"
+    },
+    {
+      "source": "circuit_zone-east-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl10"
     },
     {
       "source": "ahu-main",
@@ -3317,6 +5882,21 @@
       "target": "sensor_temp_zone-west-lvl10"
     },
     {
+      "source": "zone-west-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl10"
+    },
+    {
+      "source": "circuit_zone-west-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl10"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl10"
@@ -3330,6 +5910,21 @@
       "source": "zone-open-a-lvl10",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl10"
+    },
+    {
+      "source": "zone-open-a-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl10"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl10"
     },
     {
       "source": "ahu-main",
@@ -3347,6 +5942,21 @@
       "target": "sensor_temp_zone-open-b-lvl10"
     },
     {
+      "source": "zone-open-b-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl10"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl10"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl10"
@@ -3360,6 +5970,21 @@
       "source": "zone-open-west-lvl10",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-west-lvl10"
+    },
+    {
+      "source": "zone-open-west-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl10"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl10"
     },
     {
       "source": "ahu-main",
@@ -3377,6 +6002,21 @@
       "target": "sensor_temp_zone-open-east-lvl10"
     },
     {
+      "source": "zone-open-east-lvl10",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl10"
+    },
+    {
+      "source": "panel-lvl10",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl10"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl10",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl10"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-east-lvl10"
@@ -3390,6 +6030,21 @@
       "source": "zone-core-lvl11",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl11"
+    },
+    {
+      "source": "zone-core-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl11"
+    },
+    {
+      "source": "circuit_zone-core-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl11"
     },
     {
       "source": "ahu-main",
@@ -3407,6 +6062,21 @@
       "target": "sensor_temp_zone-north-lvl11"
     },
     {
+      "source": "zone-north-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl11"
+    },
+    {
+      "source": "circuit_zone-north-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl11"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl11"
@@ -3420,6 +6090,21 @@
       "source": "zone-south-lvl11",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl11"
+    },
+    {
+      "source": "zone-south-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl11"
+    },
+    {
+      "source": "circuit_zone-south-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl11"
     },
     {
       "source": "ahu-main",
@@ -3437,6 +6122,21 @@
       "target": "sensor_temp_zone-east-lvl11"
     },
     {
+      "source": "zone-east-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl11"
+    },
+    {
+      "source": "circuit_zone-east-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl11"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl11"
@@ -3450,6 +6150,21 @@
       "source": "zone-west-lvl11",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl11"
+    },
+    {
+      "source": "zone-west-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl11"
+    },
+    {
+      "source": "circuit_zone-west-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl11"
     },
     {
       "source": "ahu-main",
@@ -3467,6 +6182,21 @@
       "target": "sensor_temp_zone-open-a-lvl11"
     },
     {
+      "source": "zone-open-a-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl11"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl11"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl11"
@@ -3480,6 +6210,21 @@
       "source": "zone-open-b-lvl11",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl11"
+    },
+    {
+      "source": "zone-open-b-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl11"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl11"
     },
     {
       "source": "ahu-main",
@@ -3497,6 +6242,21 @@
       "target": "sensor_temp_zone-open-west-lvl11"
     },
     {
+      "source": "zone-open-west-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl11"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl11"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl11"
@@ -3510,6 +6270,21 @@
       "source": "zone-open-east-lvl11",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl11"
+    },
+    {
+      "source": "zone-open-east-lvl11",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl11"
+    },
+    {
+      "source": "panel-lvl11",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl11"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl11",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl11"
     },
     {
       "source": "ahu-main",
@@ -3527,6 +6302,21 @@
       "target": "sensor_temp_zone-core-lvl12"
     },
     {
+      "source": "zone-core-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl12"
+    },
+    {
+      "source": "circuit_zone-core-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl12"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl12"
@@ -3540,6 +6330,21 @@
       "source": "zone-north-lvl12",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl12"
+    },
+    {
+      "source": "zone-north-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl12"
+    },
+    {
+      "source": "circuit_zone-north-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl12"
     },
     {
       "source": "ahu-main",
@@ -3557,6 +6362,21 @@
       "target": "sensor_temp_zone-south-lvl12"
     },
     {
+      "source": "zone-south-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl12"
+    },
+    {
+      "source": "circuit_zone-south-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl12"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl12"
@@ -3570,6 +6390,21 @@
       "source": "zone-east-lvl12",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl12"
+    },
+    {
+      "source": "zone-east-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl12"
+    },
+    {
+      "source": "circuit_zone-east-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl12"
     },
     {
       "source": "ahu-main",
@@ -3587,6 +6422,21 @@
       "target": "sensor_temp_zone-west-lvl12"
     },
     {
+      "source": "zone-west-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl12"
+    },
+    {
+      "source": "circuit_zone-west-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl12"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl12"
@@ -3600,6 +6450,21 @@
       "source": "zone-open-a-lvl12",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl12"
+    },
+    {
+      "source": "zone-open-a-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl12"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl12"
     },
     {
       "source": "ahu-main",
@@ -3617,6 +6482,21 @@
       "target": "sensor_temp_zone-open-b-lvl12"
     },
     {
+      "source": "zone-open-b-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl12"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl12"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl12"
@@ -3630,6 +6510,21 @@
       "source": "zone-server-lvl12",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-server-lvl12"
+    },
+    {
+      "source": "zone-server-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-server-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-server-lvl12"
+    },
+    {
+      "source": "circuit_zone-server-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-server-lvl12"
     },
     {
       "source": "ahu-main",
@@ -3647,6 +6542,21 @@
       "target": "sensor_temp_zone-conf-lvl12"
     },
     {
+      "source": "zone-conf-lvl12",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-conf-lvl12"
+    },
+    {
+      "source": "panel-lvl12",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-conf-lvl12"
+    },
+    {
+      "source": "circuit_zone-conf-lvl12",
+      "predicate": "brick:feeds",
+      "target": "zone-conf-lvl12"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-conf-lvl12"
@@ -3660,6 +6570,21 @@
       "source": "zone-core-lvl13",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl13"
+    },
+    {
+      "source": "zone-core-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl13"
+    },
+    {
+      "source": "circuit_zone-core-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl13"
     },
     {
       "source": "ahu-main",
@@ -3677,6 +6602,21 @@
       "target": "sensor_temp_zone-north-lvl13"
     },
     {
+      "source": "zone-north-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl13"
+    },
+    {
+      "source": "circuit_zone-north-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl13"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl13"
@@ -3690,6 +6630,21 @@
       "source": "zone-south-lvl13",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl13"
+    },
+    {
+      "source": "zone-south-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl13"
+    },
+    {
+      "source": "circuit_zone-south-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl13"
     },
     {
       "source": "ahu-main",
@@ -3707,6 +6662,21 @@
       "target": "sensor_temp_zone-east-lvl13"
     },
     {
+      "source": "zone-east-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl13"
+    },
+    {
+      "source": "circuit_zone-east-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl13"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl13"
@@ -3720,6 +6690,21 @@
       "source": "zone-west-lvl13",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl13"
+    },
+    {
+      "source": "zone-west-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl13"
+    },
+    {
+      "source": "circuit_zone-west-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl13"
     },
     {
       "source": "ahu-main",
@@ -3737,6 +6722,21 @@
       "target": "sensor_temp_zone-open-a-lvl13"
     },
     {
+      "source": "zone-open-a-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl13"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl13"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl13"
@@ -3750,6 +6750,21 @@
       "source": "zone-open-b-lvl13",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl13"
+    },
+    {
+      "source": "zone-open-b-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl13"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl13"
     },
     {
       "source": "ahu-main",
@@ -3767,6 +6782,21 @@
       "target": "sensor_temp_zone-open-west-lvl13"
     },
     {
+      "source": "zone-open-west-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl13"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl13"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl13"
@@ -3780,6 +6810,21 @@
       "source": "zone-open-east-lvl13",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl13"
+    },
+    {
+      "source": "zone-open-east-lvl13",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl13"
+    },
+    {
+      "source": "panel-lvl13",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl13"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl13",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl13"
     },
     {
       "source": "ahu-main",
@@ -3797,6 +6842,21 @@
       "target": "sensor_temp_zone-core-lvl14"
     },
     {
+      "source": "zone-core-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl14"
+    },
+    {
+      "source": "circuit_zone-core-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl14"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-core-lvl14"
@@ -3810,6 +6870,21 @@
       "source": "zone-north-lvl14",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-north-lvl14"
+    },
+    {
+      "source": "zone-north-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl14"
+    },
+    {
+      "source": "circuit_zone-north-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl14"
     },
     {
       "source": "ahu-main",
@@ -3827,6 +6902,21 @@
       "target": "sensor_temp_zone-south-lvl14"
     },
     {
+      "source": "zone-south-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl14"
+    },
+    {
+      "source": "circuit_zone-south-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl14"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-south-lvl14"
@@ -3840,6 +6930,21 @@
       "source": "zone-east-lvl14",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-east-lvl14"
+    },
+    {
+      "source": "zone-east-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl14"
+    },
+    {
+      "source": "circuit_zone-east-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl14"
     },
     {
       "source": "ahu-main",
@@ -3857,6 +6962,21 @@
       "target": "sensor_temp_zone-west-lvl14"
     },
     {
+      "source": "zone-west-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl14"
+    },
+    {
+      "source": "circuit_zone-west-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl14"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-west-lvl14"
@@ -3870,6 +6990,21 @@
       "source": "zone-open-a-lvl14",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-a-lvl14"
+    },
+    {
+      "source": "zone-open-a-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl14"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl14"
     },
     {
       "source": "ahu-main",
@@ -3887,6 +7022,21 @@
       "target": "sensor_temp_zone-open-b-lvl14"
     },
     {
+      "source": "zone-open-b-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl14"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl14"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-b-lvl14"
@@ -3900,6 +7050,21 @@
       "source": "zone-open-west-lvl14",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-west-lvl14"
+    },
+    {
+      "source": "zone-open-west-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl14"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl14"
     },
     {
       "source": "ahu-main",
@@ -3917,6 +7082,21 @@
       "target": "sensor_temp_zone-open-east-lvl14"
     },
     {
+      "source": "zone-open-east-lvl14",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl14"
+    },
+    {
+      "source": "panel-lvl14",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl14"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl14",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl14"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-east-lvl14"
@@ -3930,6 +7110,21 @@
       "source": "zone-core-lvl15",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-core-lvl15"
+    },
+    {
+      "source": "zone-core-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-core-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-core-lvl15"
+    },
+    {
+      "source": "circuit_zone-core-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-core-lvl15"
     },
     {
       "source": "ahu-main",
@@ -3947,6 +7142,21 @@
       "target": "sensor_temp_zone-north-lvl15"
     },
     {
+      "source": "zone-north-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-north-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-north-lvl15"
+    },
+    {
+      "source": "circuit_zone-north-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-north-lvl15"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-north-lvl15"
@@ -3960,6 +7170,21 @@
       "source": "zone-south-lvl15",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-south-lvl15"
+    },
+    {
+      "source": "zone-south-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-south-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-south-lvl15"
+    },
+    {
+      "source": "circuit_zone-south-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-south-lvl15"
     },
     {
       "source": "ahu-main",
@@ -3977,6 +7202,21 @@
       "target": "sensor_temp_zone-east-lvl15"
     },
     {
+      "source": "zone-east-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-east-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-east-lvl15"
+    },
+    {
+      "source": "circuit_zone-east-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-east-lvl15"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-east-lvl15"
@@ -3990,6 +7230,21 @@
       "source": "zone-west-lvl15",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-west-lvl15"
+    },
+    {
+      "source": "zone-west-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-west-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-west-lvl15"
+    },
+    {
+      "source": "circuit_zone-west-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-west-lvl15"
     },
     {
       "source": "ahu-main",
@@ -4007,6 +7262,21 @@
       "target": "sensor_temp_zone-open-a-lvl15"
     },
     {
+      "source": "zone-open-a-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-a-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-a-lvl15"
+    },
+    {
+      "source": "circuit_zone-open-a-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-open-a-lvl15"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-a-lvl15"
@@ -4020,6 +7290,21 @@
       "source": "zone-open-b-lvl15",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-b-lvl15"
+    },
+    {
+      "source": "zone-open-b-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-b-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-b-lvl15"
+    },
+    {
+      "source": "circuit_zone-open-b-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-open-b-lvl15"
     },
     {
       "source": "ahu-main",
@@ -4037,6 +7322,21 @@
       "target": "sensor_temp_zone-open-west-lvl15"
     },
     {
+      "source": "zone-open-west-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-west-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-west-lvl15"
+    },
+    {
+      "source": "circuit_zone-open-west-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-open-west-lvl15"
+    },
+    {
       "source": "ahu-main",
       "predicate": "brick:feeds",
       "target": "vav-open-west-lvl15"
@@ -4050,6 +7350,21 @@
       "source": "zone-open-east-lvl15",
       "predicate": "brick:hasPoint",
       "target": "sensor_temp_zone-open-east-lvl15"
+    },
+    {
+      "source": "zone-open-east-lvl15",
+      "predicate": "brick:hasPoint",
+      "target": "camera_zone-open-east-lvl15"
+    },
+    {
+      "source": "panel-lvl15",
+      "predicate": "brick:feeds",
+      "target": "circuit_zone-open-east-lvl15"
+    },
+    {
+      "source": "circuit_zone-open-east-lvl15",
+      "predicate": "brick:feeds",
+      "target": "zone-open-east-lvl15"
     },
     {
       "source": "ahu-main",

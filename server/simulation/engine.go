@@ -264,8 +264,8 @@ func (e *Engine) tick(dt float64) {
 			qInternalNominal := z.BaseHeatGain + (float64(z.Occupancy) * 100.0) + qSolar
 
 			qInternal := qInternalNominal
-			if e.Scenario == "fault" && z.Type == "server-room" {
-				qInternal *= 5.0 // Thermal runaway (cooling is NOT sized for this -> red)
+			if e.Scenario == "fault" && v.TargetZone == e.FaultTarget {
+				qInternal *= 5.0 // Thermal runaway strictly on selected fault target
 			}
 
 			sp := z.Setpoint
@@ -308,10 +308,10 @@ func (e *Engine) broadcast() {
 		totalHeatW := 0.0
 		totalOccupants := 0
 		inBand := 0
-		for _, z := range e.Zones {
+		for id, z := range e.Zones {
 			qSolar := z.SolarGainMult * 10000.0
 			qi := z.BaseHeatGain + float64(z.Occupancy)*100.0 + qSolar
-			if e.Scenario == "fault" && z.Type == "server-room" {
+			if e.Scenario == "fault" && id == e.FaultTarget {
 				qi *= 5.0
 			}
 			totalHeatW += qi

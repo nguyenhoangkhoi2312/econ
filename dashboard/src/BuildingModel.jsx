@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { Evaluator, Brush, SUBTRACTION } from 'three-bvh-csg';
 import buildingData from './building-data.json';
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import AirflowField from './AirflowField';
+import AirflowVectorField from './AirflowVectorField';
 
 // ========== CSG Helper (three-bvh-csg Evaluator/Brush API) ==========
 // three-bvh-csg has no static `CSG` helper; it exposes an Evaluator that
@@ -58,7 +58,7 @@ function getCachedGeometry(signature, build) {
 }
 
 // ========== STEP 1: CSG-Based Wall with Window Cutouts ==========
-function WallWithWindows({ position: [x, y, z], width, height, depth, rotation, windows = [], isActive }) {
+function WallWithWindows({ position: [x, y, z], width, height, depth, rotation, windows = [], isActive, viewMode = 'hybrid' }) {
   const meshRef = useRef();
   
   const wallGeometry = useMemo(() => {
@@ -79,6 +79,9 @@ function WallWithWindows({ position: [x, y, z], width, height, depth, rotation, 
     });
   }, [width, height, depth, windows]);
   
+  const isLogical = viewMode === 'logical';
+  const opacity = isLogical ? 0.05 : (isActive ? 0.2 : 0.05);
+
   return (
     <mesh
       ref={meshRef}
@@ -92,14 +95,15 @@ function WallWithWindows({ position: [x, y, z], width, height, depth, rotation, 
         roughness={0.8}
         metalness={0.2}
         transparent={true}
-        opacity={isActive ? 0.2 : 0.05}
+        opacity={opacity}
+        wireframe={isLogical && isActive}
       />
     </mesh>
   );
 }
 
 // ========== STEP 2: Exterior Walls Generator ==========
-function ExteriorWalls({ floor, isActive }) {
+function ExteriorWalls({ floor, isActive, viewMode = 'hybrid' }) {
   const walls = useMemo(() => {
     const polygon = floor.geometry.exteriorPolygon;
     const wallSegments = [];
@@ -155,6 +159,7 @@ function ExteriorWalls({ floor, isActive }) {
           rotation={wall.rotation}
           windows={wall.windows}
           isActive={isActive}
+          viewMode={viewMode}
         />
       ))}
     </group>
@@ -162,7 +167,7 @@ function ExteriorWalls({ floor, isActive }) {
 }
 
 // ========== STEP 3: Floor Plate with Core Cutout ==========
-function FloorPlate({ floor, isActive, onClick, simState }) {
+function FloorPlate({ floor, isActive, onClick, simState, viewMode = 'hybrid' }) {
   const [hovered, setHovered] = useState(false);
 
   const hasAlert = useMemo(() => {
@@ -209,6 +214,10 @@ function FloorPlate({ floor, isActive, onClick, simState }) {
     });
   }, [floor]);
   
+  const isLogical = viewMode === 'logical';
+  const baseOpacity = isLogical ? 0.05 : (isActive ? 0.4 : 0.3);
+  const opacity = hasAlert ? 0.6 : (hovered ? 0.6 : baseOpacity);
+
   return (
     <group>
       <mesh
@@ -222,9 +231,10 @@ function FloorPlate({ floor, isActive, onClick, simState }) {
           color={hasAlert ? "#aa0000" : (isActive ? "#dddddd" : hovered ? "#555555" : "#333333")}
           roughness={0.9}
           transparent={true}
-          opacity={hasAlert ? 0.6 : (isActive ? 0.4 : hovered ? 0.6 : 0.3)}
+          opacity={opacity}
           polygonOffset={true}
           polygonOffsetFactor={2}
+          wireframe={isLogical && isActive}
         />
         <Edges color={hasAlert ? "#ff0000" : (isActive ? "#ffffff" : hovered ? "#00ffff" : "#444444")} threshold={15} />
       </mesh>
@@ -254,7 +264,7 @@ function FloorPlate({ floor, isActive, onClick, simState }) {
 }
 
 // ========== STEP 4: Zone Renderer with Thermal Heatmap ==========
-function ZoneRenderer({ zone, isActive, simState, isHovered, onHover, isSelected, onSelect }) {
+function ZoneRenderer({ zone, isActive, simState, isHovered, onHover, isSelected, onSelect, viewMode = 'hybrid' }) {
   const meshRef = useRef();
   const zoneSim = simState.zones[zone.zoneId];
   const alertState = zoneSim?.alert;
@@ -287,13 +297,16 @@ function ZoneRenderer({ zone, isActive, simState, isHovered, onHover, isSelected
     return geom.toNonIndexed();
   }, [zone, thickness]);
 
+  const isPhysical = viewMode === 'physical';
+
   const material = useMemo(() => {
     return new THREE.ShaderMaterial({
       uniforms: {
         temperature: { value: temperature },
         setpoint: { value: setpoint },
         deadband: { value: deadband },
-        opacity: { value: isActive ? (isHovered ? 0.9 : 0.65) : 0.15 }
+        opacity: { value: isActive ? (isHovered ? 0.9 : 0.65) : 0.15 },
+        isPhysical: { value: isPhysical ? 1.0 : 0.0 }
       },
       vertexShader: `
         varying vec2 vUv;
@@ -307,27 +320,37 @@ function ZoneRenderer({ zone, isActive, simState, isHovered, onHover, isSelected
         uniform float setpoint;
         uniform float deadband;
         uniform float opacity;
+        uniform float isPhysical;
         varying vec2 vUv;
         
         vec3 heatmap(float deviation) {
-          float r = smoothstep(0.5, 1.5, deviation);
-          float b = smoothstep(0.5, 1.5, -deviation);
-          float g = 1.0 - max(r, b);
-          return vec3(r, g, b);
+          float amount = clamp(deviation, -1.0, 3.0);
+          vec3 cool = vec3(0.0, 0.5, 1.0);  // Blue
+          vec3 good = vec3(0.0, 1.0, 0.0);  // Green
+          vec3 warn = vec3(1.0, 1.0, 0.0);  // Yellow
+          vec3 hot = vec3(1.0, 0.0, 0.0);   // Red
+          
+          if (amount < 0.0) return mix(good, cool, -amount);
+          if (amount < 1.0) return mix(good, warn, amount);
+          return mix(warn, hot, min(1.0, amount - 1.0));
         }
         
         void main() {
           float deviation = (temperature - setpoint) / deadband;
-          gl_FragColor = vec4(heatmap(deviation), opacity);
+          vec3 heatColor = heatmap(deviation);
+          vec3 physColor = vec3(0.2, 0.2, 0.2);
+          vec3 finalColor = mix(heatColor, physColor, isPhysical);
+          float finalOpacity = mix(opacity, opacity * 0.1, isPhysical);
+          gl_FragColor = vec4(finalColor, finalOpacity);
         }
       `,
       transparent: true,
       side: THREE.DoubleSide,
       depthWrite: false,
     });
-  }, [isActive, isHovered]);
+  }, [isActive, isHovered, isPhysical]);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (material && material.uniforms.temperature) {
       const liveTemp = simState.zones[zone.zoneId]?.temp || setpoint;
       material.uniforms.temperature.value = THREE.MathUtils.lerp(
@@ -335,6 +358,11 @@ function ZoneRenderer({ zone, isActive, simState, isHovered, onHover, isSelected
         liveTemp,
         0.05
       );
+      if (alertState === true) {
+        material.uniforms.opacity.value = 0.65 + 0.3 * Math.sin(state.clock.elapsedTime * 8);
+      } else {
+        material.uniforms.opacity.value = isActive ? (isHovered ? 0.9 : 0.65) : 0.15;
+      }
     }
   });
 
@@ -364,7 +392,7 @@ function ZoneRenderer({ zone, isActive, simState, isHovered, onHover, isSelected
         }}
       >
         <primitive object={material} attach="material" />
-        <Edges color={(isHovered || isSelected) && isActive ? "#ffffff" : "#222222"} threshold={15} />
+        <Edges color={(isHovered || isSelected) && isActive ? "#ffffff" : (alertState === true ? "#ff0000" : "#222222")} threshold={15} />
       </mesh>
 
       {/* VIRTUAL IOT SENSORS (Only visible when drilled down into the room) */}
@@ -443,8 +471,82 @@ function DynamicControls({ targetX, targetY, targetZ, isZoomed }) {
   return <OrbitControls ref={controlsRef} />;
 }
 
+// ========== STEP 4.5: Physical Infrastructure Layer ==========
+function InfrastructureLayer({ floor, viewMode }) {
+  // Only render physical infrastructure in 'physical' or 'hybrid' modes
+  // If 'logical', we might want to fade them, but user asked for semantic transparency:
+  // "Physical mode: opaque geometry... Logical mode: geometry becomes semi-transparent or wireframed"
+  const isLogical = viewMode === 'logical';
+  const isHybrid = viewMode === 'hybrid';
+  
+  const opacity = isLogical ? 0.15 : (isHybrid ? 0.4 : 1.0);
+  const wireframe = isLogical;
+
+  return (
+    <group position={[-20, 0.05, -20]}>
+      {/* Procedural Server Racks in Server Rooms */}
+      {floor.zones.filter(z => z.type === 'server_room').map(zone => {
+        const racks = [];
+        // Place a few racks based on zone centroid
+        for(let i=0; i<4; i++) {
+          racks.push(
+            <mesh key={`rack-${i}`} position={[zone.centroid.x - 2 + i*1.2, 1, zone.centroid.y]}>
+              <boxGeometry args={[0.8, 2, 1.2]} />
+              <meshStandardMaterial color="#333355" transparent opacity={opacity} wireframe={wireframe} />
+              {!isLogical && <Edges color="#111122" threshold={15} />}
+            </mesh>
+          );
+        }
+        return <group key={zone.zoneId}>{racks}</group>;
+      })}
+
+      {/* Procedural HVAC Main Trunk */}
+      <mesh position={[20, 3.5, 20]}>
+        <boxGeometry args={[30, 0.4, 0.8]} />
+        <meshStandardMaterial color="#00e5ff" transparent opacity={opacity * 0.8} wireframe={wireframe} />
+      </mesh>
+      <mesh position={[20, 3.5, 20]}>
+        <boxGeometry args={[0.8, 0.4, 20]} />
+        <meshStandardMaterial color="#00e5ff" transparent opacity={opacity * 0.8} wireframe={wireframe} />
+      </mesh>
+
+      {/* Procedural Electrical Cable Trays */}
+      <mesh position={[20, 3.2, 18]}>
+        <boxGeometry args={[28, 0.1, 0.4]} />
+        <meshStandardMaterial color="#ffaa00" transparent opacity={opacity} wireframe={wireframe} />
+      </mesh>
+    </group>
+  );
+}
+
+
+export function SingleFloorLayout({ floor, isActive, simState, activeScenario, faultTarget, onFloorClick, selectedZone, setSelectedZone, hoveredZone, setHoveredZone, viewMode = 'hybrid' }) {
+  return (
+    <>
+      <FloorPlate floor={floor} isActive={isActive} onClick={onFloorClick} simState={simState} viewMode={viewMode} />
+      {isActive && <ExteriorWalls floor={floor} isActive={isActive} viewMode={viewMode} />}
+      <group>
+        {floor.zones.map((zone) => (
+          <ZoneRenderer
+            key={zone.zoneId}
+            zone={zone}
+            isActive={isActive}
+            simState={simState}
+            isHovered={hoveredZone === zone.zoneId}
+            onHover={setHoveredZone}
+            isSelected={selectedZone === zone.zoneId}
+            onSelect={setSelectedZone}
+            viewMode={viewMode}
+          />
+        ))}
+      </group>
+      {isActive && <InfrastructureLayer floor={floor} viewMode={viewMode} />}
+    </>
+  );
+}
+
 // ========== STEP 5: Complete Production Building Component ==========
-export default function BuildingModel({ simState, activeFloor, onFloorClick, showAirflow, selectedZone, setSelectedZone }) {
+export default function BuildingModel({ simState, activeFloor, onFloorClick, showAirflow, selectedZone, setSelectedZone, viewMode = 'hybrid' }) {
   const [hoveredZone, setHoveredZone] = useState(null);
   const floors = buildingData.floors;
 
@@ -500,24 +602,17 @@ export default function BuildingModel({ simState, activeFloor, onFloorClick, sho
                   onFloorClick(floor.level);
                 }}
               >
-                <FloorPlate floor={floor} isActive={isActive} onClick={onFloorClick} simState={simState} />
-
-                {isActive && <ExteriorWalls floor={floor} isActive={isActive} />}
-                {isActive && showAirflow && <AirflowField floor={floor} />}
-                <group>
-                  {floor.zones.map((zone) => (
-                    <ZoneRenderer
-                      key={zone.zoneId}
-                      zone={zone}
-                      isActive={isActive}
-                      simState={simState}
-                      isHovered={hoveredZone === zone.zoneId}
-                      onHover={setHoveredZone}
-                      isSelected={selectedZone === zone.zoneId}
-                      onSelect={setSelectedZone}
-                    />
-                  ))}
-                </group>
+                <SingleFloorLayout
+                  floor={floor}
+                  isActive={isActive}
+                  simState={simState}
+                  selectedZone={selectedZone}
+                  setSelectedZone={setSelectedZone}
+                  hoveredZone={hoveredZone}
+                  setHoveredZone={setHoveredZone}
+                  onFloorClick={onFloorClick}
+                  viewMode={viewMode}
+                />
               </group>
             );
           })}

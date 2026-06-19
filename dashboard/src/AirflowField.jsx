@@ -104,10 +104,10 @@ export default function AirflowField({ floor, intensity = 1.0 }) {
   return (
     <points ref={ref} geometry={geometry} frustumCulled={false}>
       <pointsMaterial
-        size={0.85}
+        size={1.6}
         vertexColors
         transparent
-        opacity={0.9}
+        opacity={1.0}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}

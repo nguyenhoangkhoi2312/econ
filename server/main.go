@@ -77,6 +77,15 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request, engine *simulation.
 			break
 		}
 		log.Printf("Received command: %s", string(msg))
-		engine.SetScenario(string(msg))
+		// Isolate command handling: a panic here must never take down the whole
+		// backend (and thus stop the telemetry stream for every client).
+		func() {
+			defer func() {
+				if r := recover(); r != nil {
+					log.Printf("recovered from panic handling command %q: %v", string(msg), r)
+				}
+			}()
+			engine.SetScenario(string(msg))
+		}()
 	}
 }
