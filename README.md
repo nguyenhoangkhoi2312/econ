@@ -4,6 +4,23 @@ ECON is a high-performance Digital Twin platform designed to bridge Building Inf
 
 > **🆕 Latest Updates**
 >
+> ### 2026-06-24 — TimescaleDB history persistence & manual-override veto
+>
+> **Self-recording history.** The Go engine now persists its own telemetry to the TimescaleDB
+> container once per second — global load/CO₂ and per-zone temperature/occupancy (`server/db.go`).
+> Writes go through a non-blocking buffered channel + background batch writer (one multi-row insert
+> per flush), so the 30 FPS broadcast loop is never stalled. A new `GET /api/history?zone=&minutes=`
+> endpoint serves second-bucketed history (`time_bucket`), and the dashboard seeds its delta-card
+> sparklines from it on mount before continuing with the live stream — falling back to the live
+> stream alone when the DB container is down.
+>
+> **Human-in-the-loop override.** Operators can now veto the autonomous optimizer from the dashboard:
+> the micro-telemetry and zone panels expose FORCE OFF / MAX COOL / PURGE / RESET buttons that send a
+> `{action, zone}` payload over the WebSocket. `main.go` routes it to `Engine.PublishCommand`, which
+> normalizes the action (high-level verbs *or* raw firmware strings) to the `LIGHTS_x;SETPOINT=y`
+> format the ESP32 and optimizer share, then publishes `econ/commands/<zone>`. The override is
+> transient — the occupancy optimizer reasserts control on the next tick.
+>
 > ### 2026-06-24 — Attention camera, volumetric airflow & forecast wiring
 >
 > **Attention-floor camera.** Opening the dashboard now frames the *whole tower top-to-bottom*
